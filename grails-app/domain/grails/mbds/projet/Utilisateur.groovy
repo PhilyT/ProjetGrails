@@ -13,7 +13,7 @@ class Utilisateur implements Serializable {
 
     String name
     String lastName
-    String login
+    String username
     String password
     String email
     boolean admin= false
@@ -29,10 +29,10 @@ class Utilisateur implements Serializable {
         return this.lastName + ' ' + this.name
     }
     static constraints = {
-        name blank: false , nullable: false,unique: true
-        lastName blank: false,  nullable: false,unique: true
-        login size: 5..15, blank: false, unique: true
-        password size: 5..15, blank: false, nullable: false,password: true
+        name blank: false , nullable: false,unique: false
+        lastName blank: false,  nullable: false,unique: false
+        username size: 2..15, blank: false, unique: true
+        password size: 4..15, blank: false, nullable: false,password: true
         email email: true
 
     }
