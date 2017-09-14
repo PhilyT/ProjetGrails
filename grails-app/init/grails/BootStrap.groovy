@@ -12,11 +12,11 @@ class BootStrap {
             def roleModerateur = new Role(authority:"ROLE_MODERATEUR").save(flush:true, failError:true)
             def roleUtilisateur = new Role(authority:"ROLE_UTILISATEUR").save(flush:true, failError:true)
 
-            def utilisateur = new Utilisateur(username:"user", password:"0000").save(flush:true, failError:true)
-            def moderateur = new Utilisateur(username:"mod", password:"0000").save(flush:true, failError:true)
-            def admin = new Utilisateur(username:"admin", password:"0000").save(flush:true, failError:true)
+            def utilisateur = new Utilisateur(username:"user", password:"0000", name: "Toto", lastName: "Dupont").save(flush:true, failError:true)
+            def moderateur = new Utilisateur(username:"mod", password:"0000", name: "Titi", lastName: "Piou").save(flush:true, failError:true)
+            def admin = new Utilisateur(username:"admin", password:"0000", name: "Tata", lastName: "Piou").save(flush:true, failError:true)
 
-            UtilisateurRole.create( utilisateur, roleUtilisateur, true)
+            UtilisateurRole.create( utilisateur, roleUtilisateur,true)
             UtilisateurRole.create (moderateur, roleModerateur, true)
             UtilisateurRole.create (admin, roleAdmin,true)
         }

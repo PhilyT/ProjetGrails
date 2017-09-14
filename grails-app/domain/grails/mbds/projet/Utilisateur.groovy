@@ -16,7 +16,6 @@ class Utilisateur implements Serializable {
     String username
     String password
     String email
-    boolean admin= false
     boolean enabled = true
     boolean accountExpired
     boolean accountLocked
@@ -25,15 +24,13 @@ class Utilisateur implements Serializable {
     Set<Role> getAuthorities() {
         (UtilisateurRole.findAllByUtilisateur(this) as List<UtilisateurRole>)*.role as Set<Role>
     }
-    String toString() {
-        return this.lastName + ' ' + this.name
-    }
+
     static constraints = {
-        name blank: false , nullable: false,unique: false
-        lastName blank: false,  nullable: false,unique: false
-        username size: 2..15, blank: false, unique: true
-        password size: 4..15, blank: false, nullable: false,password: true
-        email email: true
+        name blank: false , nullable: false
+        lastName blank: false,  nullable: false
+        username blank: false, unique: true, nullable: false
+        password blank: false, nullable: false,password: true
+        email email: true , nullable: true
 
     }
 
