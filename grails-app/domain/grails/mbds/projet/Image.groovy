@@ -1,12 +1,10 @@
-package plateforme
+package grails.mbds.projet
 
-class Groupe {
-    static hasMany = [Pois:pois]
+class Image {
+    static belongsTo = [Groupe:groupe]
     String nom
-    Long id
-
+    long id
     static constraints = {
         nom blank: false , nullable: false,unique: true
-
     }
 }
