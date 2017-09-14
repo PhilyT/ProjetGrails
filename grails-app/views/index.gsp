@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>Welcome to Grails</title>
+    <title>Welcome</title>
 
     <asset:link rel="icon" href="favicon.ico" type="image/x-ico" />
 </head>
@@ -57,7 +57,7 @@
 
             <p>
                 Congratulations, you have successfully started your first Grails application! At the moment
-                this is the default page, feel free to modify it to either redirect to a controller or display
+                this is the default page, feel free to modify plateforme to either redirect to a controller or display
                 whatever content you may choose. Below is a list of controllers that are currently deployed in
                 this application, click on each to execute its default action:
             </p>
@@ -65,7 +65,7 @@
             <div id="controllers" role="navigation">
                 <h2>Available Controllers:</h2>
                 <ul>
-                    <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
+                    <g:each var="c" in="${grailsApplication.controllerClasses.sort { plateforme.fullName } }">
                         <li class="controller">
                             <g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>
                         </li>
