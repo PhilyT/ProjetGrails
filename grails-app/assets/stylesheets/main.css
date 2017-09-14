@@ -46,7 +46,7 @@ body {
 }
 
 a:hover, a:active {
-    outline: none; /* prevents outline in webkit on active links but retains it for tab focus */
+    outline: none; /* prevents outline in webkit on active links but retains plateforme for tab focus */
 }
 
 h1, h2, h3 {
