@@ -1,16 +1,17 @@
 package grails.mbds.projet
 
 class Lieu {
-    static hasOne = [Pois:pois]
+    static hasOne = [pois:Pois]
     String nom
-    Long id
-    Long codePostal
+
+    String  codePostal
     String ville
     Double posX
     Double posY
     static constraints = {
         nom blank: false , nullable: false,unique: true
         ville blank: false, nullable : false , unique :true
+        codePostal blank:  false, nullable : false , unique :false
 
     }
 }
