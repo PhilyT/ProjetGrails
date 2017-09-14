@@ -1,9 +1,8 @@
 package grails.mbds.projet
 
 class Groupe {
-    static hasMany = [Pois:pois]
+    static hasMany = [pois:Pois, images:Image]
     String nom
-    Long id
 
     static constraints = {
         nom blank: false , nullable: false,unique: true

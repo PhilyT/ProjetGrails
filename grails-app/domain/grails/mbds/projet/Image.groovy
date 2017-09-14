@@ -1,10 +1,12 @@
 package grails.mbds.projet
 
 class Image {
-    static belongsTo = [Groupe:groupe]
+    static belongsTo = [groupe:Groupe, poi:Pois]
     String nom
-    long id
+
     static constraints = {
         nom blank: false , nullable: false,unique: true
+        groupe nullable: true
+        poi nullable: true
     }
 }
