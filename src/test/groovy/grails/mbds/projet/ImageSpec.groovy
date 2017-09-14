@@ -1,5 +1,6 @@
-package plateforme
+package grails.mbds.projet
 
+import grails.mbds.projet.Image
 import grails.testing.gorm.DomainUnitTest
 import spock.lang.Specification
 

@@ -1,4 +1,4 @@
-package plateforme
+package grails.mbds.projet
 
 class Lieu {
     static hasOne = [Pois:pois]

@@ -1,9 +1,10 @@
-package plateforme
+package grails.mbds.projet
 
+import grails.mbds.projet.Pois
 import grails.testing.gorm.DomainUnitTest
 import spock.lang.Specification
 
-class LieuSpec extends Specification implements DomainUnitTest<Lieu> {
+class PoisSpec extends Specification implements DomainUnitTest<Pois> {
 
     def setup() {
     }
