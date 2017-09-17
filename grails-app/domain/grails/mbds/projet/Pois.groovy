@@ -2,6 +2,7 @@ package grails.mbds.projet
 
 class Pois {
     static hasOne = [lieu:Lieu]
+    static belongsTo = Groupe
     static hasMany = [groupes:Groupe]
     String nom
     String description
