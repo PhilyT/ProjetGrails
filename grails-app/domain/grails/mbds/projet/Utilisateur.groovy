@@ -10,7 +10,7 @@ import grails.compiler.GrailsCompileStatic
 class Utilisateur implements Serializable {
 
     private static final long serialVersionUID = 1
-
+    static hasMany = [pois:Pois]
     String name
     String lastName
     String username
