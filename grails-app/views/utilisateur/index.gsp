@@ -23,6 +23,17 @@
             <div class="pagination">
                 <g:paginate total="${utilisateurCount ?: 0}" />
             </div>
+            <div>
+                <sec:ifLoggedIn>
+                    Bienvenu !
+                </sec:ifLoggedIn>
+                <sec:ifLoggedIn>
+                    Logged in as <sec:username/>
+                </sec:ifLoggedIn>
+
+
+
+            </div>
         </div>
     </body>
 </html>

@@ -28,6 +28,9 @@
                         <asset:image src="grails-cupsonly-logo-white.svg"/>
                     </i> Grails
                 </a>
+                <sec:ifLoggedIn>
+                    Logged in as <sec:username/>
+                </sec:ifLoggedIn>
             </div>
             <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
                 <ul class="nav navbar-nav navbar-right">

@@ -1,22 +1,39 @@
 package grails.mbds.projet
 
+import grails.plugin.springsecurity.annotation.Secured
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class UtilisateurController {
+    def springSecurityService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    @Secured(['ROLE_ADMIN','ROLE_MODERATEUR'])
     def index(Integer max) {
+        println "lal"
+        println springSecurityService.getCurrentUser()
         params.max = Math.min(max ?: 10, 100)
         respond Utilisateur.list(params), model:[utilisateurCount: Utilisateur.count()]
     }
 
-    def show(Utilisateur utilisateur) {
-        respond utilisateur
-    }
 
+    @Secured(['permitAll'])
+    def show(Utilisateur utilisateur) {
+
+        if(utilisateur.getId()==springSecurityService.getCurrentUserId()) {
+            println(springSecurityService.getCurrentUserId())
+            respond utilisateur
+        }
+    }
+    def showPostPage(){
+        def currentLoggedInUser = springSecurityService.getCurrentUser();
+        //[currentLoggedInUser:currentLoggedInUser]
+        render currentLoggedInUser
+    }
+    @Secured(['ROLE_ADMIN','ROLE_MODERATEUR'])
     def create() {
         respond new Utilisateur(params)
     }
@@ -45,12 +62,13 @@ class UtilisateurController {
             '*' { respond utilisateur, [status: CREATED] }
         }
     }
-
+    @Secured(['permitAll'])
     def edit(Utilisateur utilisateur) {
         respond utilisateur
     }
 
     @Transactional
+    @Secured(['permitAll'])
     def update(Utilisateur utilisateur) {
         if (utilisateur == null) {
             transactionStatus.setRollbackOnly()
@@ -76,6 +94,7 @@ class UtilisateurController {
     }
 
     @Transactional
+    @Secured(['ROLE_ADMIN'])
     def delete(Utilisateur utilisateur) {
 
         if (utilisateur == null) {
