@@ -23,9 +23,9 @@ Voici la liste des contraintes pour la réalisation de votre projet :
 - Vos POIs seront répartis dans des groupes, ces groupes seront eux aussi nommés et illustrés.
 - Au sein d’un groupe, les POIs ne peuvent apparaitre qu’une seule fois, et y sont seront ordonnés, un POI pourra appartenir à un nombre illimité de groupes.
 - Les utilisateurs auront chacun un ou plusieurs rôles qui définiront leur niveau d’accès (administrateur / modérateur / utilisateur) 
-- Les administrateurs pourront modifier n’importe quel profil utilisateur peu importe son rôle et créer/modifier/supprimer des utilisateurs/ groupes/ pois
-- Les modérateurs pourront modifier les profils utilisateurs d’un niveau «utilisateur» et créer/ modifier/ supprimer les groupes et pois
-- Un utilisateur ayant le rôle «utilisateur» pourra consulter les groupes et les pois et éditer son profil.
+- Les administrateurs pourront modifier n’importe quel profil utilisateur peu importe son rôle et créer/modifier/supprimer des utilisateurs/ groupes/ poi
+- Les modérateurs pourront modifier les profils utilisateurs d’un niveau «utilisateur» et créer/ modifier/ supprimer les groupes et poi
+- Un utilisateur ayant le rôle «utilisateur» pourra consulter les groupes et les poi et éditer son profil.
 - Votre plateforme sera composée de 2 parties 
   - Un site qui permettra de créer / modifier / supprimer des ...
     - Utilisateurs

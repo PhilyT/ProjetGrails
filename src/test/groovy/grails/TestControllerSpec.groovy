@@ -1,10 +1,9 @@
-package grails.mbds.projet
+package grails
 
-import grails.mbds.projet.Pois
-import grails.testing.gorm.DomainUnitTest
+import grails.testing.web.controllers.ControllerUnitTest
 import spock.lang.Specification
 
-class PoisSpec extends Specification implements DomainUnitTest<Pois> {
+class TestControllerSpec extends Specification implements ControllerUnitTest<TestController> {
 
     def setup() {
     }

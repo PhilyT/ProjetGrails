@@ -1,11 +1,10 @@
 package grails.mbds.projet
 
-import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(PoisController)
-@Mock(Pois)
-class PoisControllerSpec extends Specification {
+@TestFor(PoiController)
+@Mock(Poi)
+class PoiControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
@@ -38,7 +37,7 @@ class PoisControllerSpec extends Specification {
         when:"The save action is executed with an invalid instance"
             request.contentType = FORM_CONTENT_TYPE
             request.method = 'POST'
-            def pois = new Pois()
+            def pois = new Poi()
             pois.validate()
             controller.save(pois)
 
@@ -49,14 +48,14 @@ class PoisControllerSpec extends Specification {
         when:"The save action is executed with a valid instance"
             response.reset()
             populateValidParams(params)
-            pois = new Pois(params)
+            pois = new Poi(params)
 
             controller.save(pois)
 
         then:"A redirect is issued to the show action"
-            response.redirectedUrl == '/pois/show/1'
+            response.redirectedUrl == '/poi/show/1'
             controller.flash.message != null
-            Pois.count() == 1
+            Poi.count() == 1
     }
 
     void "Test that the show action returns the correct model"() {
@@ -68,7 +67,7 @@ class PoisControllerSpec extends Specification {
 
         when:"A domain instance is passed to the show action"
             populateValidParams(params)
-            def pois = new Pois(params)
+            def pois = new Poi(params)
             controller.show(pois)
 
         then:"A model is populated containing the domain instance"
@@ -84,7 +83,7 @@ class PoisControllerSpec extends Specification {
 
         when:"A domain instance is passed to the edit action"
             populateValidParams(params)
-            def pois = new Pois(params)
+            def pois = new Poi(params)
             controller.edit(pois)
 
         then:"A model is populated containing the domain instance"
@@ -98,12 +97,12 @@ class PoisControllerSpec extends Specification {
             controller.update(null)
 
         then:"A 404 error is returned"
-            response.redirectedUrl == '/pois/index'
+            response.redirectedUrl == '/poi/index'
             flash.message != null
 
         when:"An invalid domain instance is passed to the update action"
             response.reset()
-            def pois = new Pois()
+            def pois = new Poi()
             pois.validate()
             controller.update(pois)
 
@@ -114,12 +113,12 @@ class PoisControllerSpec extends Specification {
         when:"A valid domain instance is passed to the update action"
             response.reset()
             populateValidParams(params)
-            pois = new Pois(params).save(flush: true)
+            pois = new Poi(params).save(flush: true)
             controller.update(pois)
 
         then:"A redirect is issued to the show action"
             pois != null
-            response.redirectedUrl == "/pois/show/$pois.id"
+            response.redirectedUrl == "/poi/show/$pois.id"
             flash.message != null
     }
 
@@ -130,23 +129,23 @@ class PoisControllerSpec extends Specification {
             controller.delete(null)
 
         then:"A 404 is returned"
-            response.redirectedUrl == '/pois/index'
+            response.redirectedUrl == '/poi/index'
             flash.message != null
 
         when:"A domain instance is created"
             response.reset()
             populateValidParams(params)
-            def pois = new Pois(params).save(flush: true)
+            def pois = new Poi(params).save(flush: true)
 
         then:"It exists"
-            Pois.count() == 1
+            Poi.count() == 1
 
         when:"The domain instance is passed to the delete action"
             controller.delete(pois)
 
         then:"The instance is deleted"
-            Pois.count() == 0
-            response.redirectedUrl == '/pois/index'
+            Poi.count() == 0
+            response.redirectedUrl == '/poi/index'
             flash.message != null
     }
 }

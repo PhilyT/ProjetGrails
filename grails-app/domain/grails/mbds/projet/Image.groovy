@@ -1,7 +1,7 @@
 package grails.mbds.projet
 
 class Image {
-    static belongsTo = [groupe:Groupe, poi:Pois]
+    static belongsTo = [groupe:Groupe, poi:Poi]
     String nom
 
     static constraints = {
