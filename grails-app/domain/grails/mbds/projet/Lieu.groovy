@@ -12,6 +12,5 @@ class Lieu {
         nom blank: false , nullable: false
         ville blank: false, nullable : false
         codePostal blank:  false, nullable : false
-        poi nullable: false
     }
 }

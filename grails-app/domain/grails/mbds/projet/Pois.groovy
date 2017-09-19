@@ -1,9 +1,9 @@
 package grails.mbds.projet
 
 class Pois {
-    static hasOne = [lieu:Lieu]
-    static belongsTo = Utilisateur
-    static hasMany = [groupes:Groupe]
+    Lieu lieu
+    static belongsTo = Groupe
+    static hasMany = [groupes:Groupe, images:Image]
     String nom
     String description
 
