@@ -13,7 +13,7 @@ class UtilisateurController {
 
     @Secured(['ROLE_ADMIN','ROLE_MODERATEUR'])
     def index(Integer max) {
-        println "lal"
+
         println springSecurityService.getCurrentUser()
         params.max = Math.min(max ?: 10, 100)
         respond Utilisateur.list(params), model:[utilisateurCount: Utilisateur.count()]
@@ -53,20 +53,37 @@ class UtilisateurController {
         redirect action: "show", id: utilisateur.id
     }
 
-    @Secured(['permitAll'])
+    @Secured(['ROLE_ADMIN','ROLE_MODERATEUR', 'ROLE_UTILISATEUR'])
     def edit(Utilisateur utilisateur) {
-        if(!springSecurityService.getAuthentication().getAuthorities()[0].toString().equals("ROLE_UTILISATEUR") || utilisateur.getId()==springSecurityService.getCurrentUserId()) {
-            //if (springSecurityService.getAuthentication().getAuthorities()[0].toString().equals("ROLE_MODERATEUR") && utilisateur.getAuthentication().getAuthorities()[0].toString().equals("ROLE_UTILISATEUR"))
-                respond utilisateur
+
+        if(springSecurityService.getAuthentication().getAuthorities()[0].toString().equals("ROLE_ADMIN") )
+            respond utilisateur
+        else if(springSecurityService.getAuthentication().getAuthorities()[0].toString().equals("ROLE_MODERATEUR")){
+                    if(utilisateur.getAuthorities()[0].authority.equals("ROLE_UTILISATEUR")){
+
+                        respond utilisateur
+                    }
+                    else if(utilisateur.getId()==springSecurityService.getCurrentUserId()){
+                        respond utilisateur
+                    }
+
+                    else
+                        redirect(action: "notFound")
 
         }
-        else{
-            redirect(action: "notFound")
+        else if(springSecurityService.getAuthentication().getAuthorities()[0].authority.equals("ROLE_UTILISATEUR")){
+                if(utilisateur.getId()==springSecurityService.getCurrentUserId()){
+                    respond utilisateur
+                }
+            else
+                    redirect(action: "notFound")
         }
+
+
     }
 
     @Transactional
-    @Secured(['permitAll'])
+    @Secured(['ROLE_ADMIN','ROLE_MODERATEUR', 'ROLE_UTILISATEUR'])
 
     def update(Utilisateur utilisateur) {
 
@@ -105,7 +122,7 @@ class UtilisateurController {
             redirect (action:"index")
 
         }
-        
+
     }
 
     protected void notFound() {
