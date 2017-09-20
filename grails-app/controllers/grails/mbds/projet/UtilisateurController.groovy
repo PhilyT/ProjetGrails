@@ -36,7 +36,7 @@ class UtilisateurController {
 
         render currentLoggedInUser
     }
-    @Secured(['ROLE_ADMIN','ROLE_MODERATEUR'])
+    @Secured(['ROLE_ADMIN'])
     def create() {
         respond new Utilisateur(params)
     }
@@ -55,9 +55,11 @@ class UtilisateurController {
 
     @Secured(['permitAll'])
     def edit(Utilisateur utilisateur) {
-        if(!springSecurityService.getAuthentication().getAuthorities()[0].toString().equals("ROLE_UTILISATEUR") || utilisateur.getId()==springSecurityService.getCurrentUserId())
-        respond utilisateur
+        if(!springSecurityService.getAuthentication().getAuthorities()[0].toString().equals("ROLE_UTILISATEUR") || utilisateur.getId()==springSecurityService.getCurrentUserId()) {
+            //if (springSecurityService.getAuthentication().getAuthorities()[0].toString().equals("ROLE_MODERATEUR") && utilisateur.getAuthentication().getAuthorities()[0].toString().equals("ROLE_UTILISATEUR"))
+                respond utilisateur
 
+        }
         else{
             redirect(action: "notFound")
         }
@@ -83,28 +85,27 @@ class UtilisateurController {
         redirect (action:"show", id:utilisateur.id)
     }
 
-
-
-
-    @Transactional
     @Secured(['ROLE_ADMIN'])
     def delete(Utilisateur utilisateur) {
 
         if (utilisateur == null) {
-            transactionStatus.setRollbackOnly()
-            notFound()
+
+            flash.message = "the user not exist"
+            redirect (action:"notFound")
             return
         }
+        else {
+            for(Role role :utilisateur.getAuthorities()){
+                springSecurityService.deleteRole role
 
-        utilisateur.delete flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'utilisateur.label', default: 'Utilisateur'), utilisateur.id])
-                redirect action:"index", method:"GET"
             }
-            '*'{ render status: NO_CONTENT }
+
+            utilisateur.delete flush:true
+            flash.message = "The user was deleted"
+            redirect (action:"index")
+
         }
+        
     }
 
     protected void notFound() {
