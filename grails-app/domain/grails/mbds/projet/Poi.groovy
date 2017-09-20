@@ -1,7 +1,8 @@
 package grails.mbds.projet
 
-class Pois {
+class Poi {
     Lieu lieu
+    Utilisateur utilisateur
     static belongsTo = Groupe
     static hasMany = [groupes:Groupe, images:Image]
     String nom
@@ -9,5 +10,7 @@ class Pois {
 
     static constraints = {
         nom blank: false , nullable: false,unique: true
+        images nullable: true
+        description blank: true, nullable: true
     }
 }

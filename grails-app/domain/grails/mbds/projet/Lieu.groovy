@@ -1,7 +1,7 @@
 package grails.mbds.projet
 
 class Lieu {
-    static belongsTo = [poi:Pois]
+    static belongsTo = [poi:Poi]
     String nom
 
     String  codePostal
@@ -12,5 +12,7 @@ class Lieu {
         nom blank: false , nullable: false
         ville blank: false, nullable : false
         codePostal blank:  false, nullable : false
+        posX nullable: true
+        posY nullable: true
     }
 }
