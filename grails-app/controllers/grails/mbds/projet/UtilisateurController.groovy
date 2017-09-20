@@ -20,17 +20,20 @@ class UtilisateurController {
     }
 
 
-    @Secured(['permitAll'])
+    @Secured(['ROLE_ADMIN','ROLE_MODERATEUR', 'ROLE_UTILISATEUR'])
     def show(Utilisateur utilisateur) {
 
-        if(utilisateur.getId()==springSecurityService.getCurrentUserId()) {
-            println(springSecurityService.getCurrentUserId())
+        if(!springSecurityService.getAuthentication().getAuthorities()[0].toString().equals("ROLE_UTILISATEUR") || utilisateur.getId()==springSecurityService.getCurrentUserId()) {
+
             respond utilisateur
+        }
+        else{
+            redirect(action: "notFound")
         }
     }
     def showPostPage(){
         def currentLoggedInUser = springSecurityService.getCurrentUser();
-        //[currentLoggedInUser:currentLoggedInUser]
+
         render currentLoggedInUser
     }
     @Secured(['ROLE_ADMIN','ROLE_MODERATEUR'])
@@ -40,58 +43,48 @@ class UtilisateurController {
 
     @Transactional
     def save(Utilisateur utilisateur) {
-        if (utilisateur == null) {
-            transactionStatus.setRollbackOnly()
-            notFound()
+        utilisateur.password = springSecurityService.encodePassword(params.password, utilisateur.username)
+        if (!utilisateur.save(flush: true)) {
+            render view: 'create', model: [utilisateurInstance: utilisateur]
             return
         }
 
-        if (utilisateur.hasErrors()) {
-            transactionStatus.setRollbackOnly()
-            respond utilisateur.errors, view:'create'
-            return
-        }
-
-        utilisateur.save flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'utilisateur.label', default: 'Utilisateur'), utilisateur.id])
-                redirect utilisateur
-            }
-            '*' { respond utilisateur, [status: CREATED] }
-        }
+        flash.message = "The user was created"
+        redirect action: "show", id: utilisateur.id
     }
+
     @Secured(['permitAll'])
     def edit(Utilisateur utilisateur) {
+        if(!springSecurityService.getAuthentication().getAuthorities()[0].toString().equals("ROLE_UTILISATEUR") || utilisateur.getId()==springSecurityService.getCurrentUserId())
         respond utilisateur
+
+        else{
+            redirect(action: "notFound")
+        }
     }
 
     @Transactional
     @Secured(['permitAll'])
+
     def update(Utilisateur utilisateur) {
-        if (utilisateur == null) {
-            transactionStatus.setRollbackOnly()
-            notFound()
+
+        if (params.password) {
+            params.password = springSecurityService.encodePassword(params.password, utilisateur.username)
+        }
+        if (!utilisateur.save(flush: true)) {
+            render view: 'edit', model: [utilisateurInstance: utilisateur]
             return
         }
-
-        if (utilisateur.hasErrors()) {
-            transactionStatus.setRollbackOnly()
-            respond utilisateur.errors, view:'edit'
-            return
+        if (springSecurityService.loggedIn && springSecurityService.principal.username == utilisateur.username) {
+            springSecurityService.reauthenticate utilisateur.username
         }
 
-        utilisateur.save flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'utilisateur.label', default: 'Utilisateur'), utilisateur.id])
-                redirect utilisateur
-            }
-            '*'{ respond utilisateur, [status: OK] }
-        }
+        flash.message = "The user was updated"
+        redirect (action:"show", id:utilisateur.id)
     }
+
+
+
 
     @Transactional
     @Secured(['ROLE_ADMIN'])
