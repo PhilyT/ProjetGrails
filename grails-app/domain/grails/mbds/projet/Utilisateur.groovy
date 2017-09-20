@@ -19,6 +19,7 @@ class Utilisateur implements Serializable {
     boolean accountExpired
     boolean accountLocked
     boolean passwordExpired
+   // static belongsTo=[poi:Poi]
 
     Set<Role> getAuthorities() {
         (UtilisateurRole.findAllByUtilisateur(this) as List<UtilisateurRole>)*.role as Set<Role>
