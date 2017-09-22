@@ -4,11 +4,12 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'groupe.label', default: 'Groupe')}" />
         <title><g:message code="default.show.label" args="[entityName]" /></title>
+        <asset:javascript src="googlemapapi.js"></asset:javascript>
         <asset:stylesheet href="googlemapapi.css"></asset:stylesheet>
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLm7WBXLggQd_tLaSQnd7fotkW6f-iBLo&callback=initMap">
         </script>
-        <asset:javascript src="googlemapapi.js"></asset:javascript>
+
     </head>
     <body>
         <a href="#show-groupe" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
