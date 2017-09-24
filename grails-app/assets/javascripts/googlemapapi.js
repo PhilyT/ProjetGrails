@@ -1,8 +1,5 @@
 var localisations = [];
 var localisation;
-var infowindows = [];
-var markers = [];
-var contents =[];
 var map;
 var centerLat=0;
 var centerLng =0;
@@ -22,37 +19,53 @@ function initMapGroupe() {
 
 }
 
-function initMapPoid() {
+function initMapPoi() {
+
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 11,
-        center:localisation
+        zoom: 11
     });
+
+
+}
+
+function updateMapPoi(lat, lng, contentInfoPoi, title){
+    localisation = {lat:lat,lng:lng};
     var marker = new google.maps.Marker({
         position: localisation,
-        map: map
+        map: map,
+        title:title
+    });
+    map.setCenter(localisation);
+    var infowindow =new google.maps.InfoWindow({content:contentInfoPoi});
+    marker.addListener('mouseover', function(){
+        clickListener(marker, infowindow);
+    });
+    marker.addListener('mouseout', function() {
+        infowindow.close();
     });
 }
 
 function updateMapGroupe(){
     for(var i =0; i<localisations.length; i++){
-        var marker = new google.maps.Marker({
-            position: localisations[i].pos,
-            map: map,
-            title:localisations[i].nom
-
-        });
-        markers.push(marker);
-        var contentInfo = '<h1>'+ localisations[i].nom+'</h1><p>'+localisations[i].description+'</p>';
-        var infowindow =new google.maps.InfoWindow({content:contentInfo});
-        infowindows.push(infowindow);
+        callbackmarker(i);
     }
+}
 
-    for(var i =0; i<markers.length; i++){
-        markers[i].addListener('click', clickListener(markers[i], infowindows[i]));
-        // markers[i].addListener('mouseout', function() {
-        //     infowindow.close();
-        // });
-    }
+function callbackmarker(i){
+    var marker = new google.maps.Marker({
+        position: localisations[i].pos,
+        map: map,
+        title:localisations[i].nom
+
+    });
+    var contentInfo = '<h1>'+ localisations[i].nom+'</h1><p>'+localisations[i].description+'</p>';
+    var infowindow =new google.maps.InfoWindow({content:contentInfo});
+    marker.addListener('mouseover', function(){
+        clickListener(marker, infowindow);
+    });
+    marker.addListener('mouseout', function() {
+        infowindow.close();
+    });
 }
 
 function clickListener(marker, infowindow){

@@ -4,6 +4,22 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'poi.label', default: 'Poi')}" />
         <title><g:message code="default.show.label" args="[entityName]" /></title>
+        <asset:javascript src="googlemapapi.js"></asset:javascript>
+        <asset:stylesheet href="googlemapapi.css"></asset:stylesheet>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLm7WBXLggQd_tLaSQnd7fotkW6f-iBLo&callback=initMapPoi">
+        </script>
+        <script>
+            window.onload = function () {
+                var lat = parseFloat(${poi.lieu.posX});
+                var lng = parseFloat(${poi.lieu.posY});
+                var contentInfoPoi = '<h1>${poi.nom}</h1><p>${poi.description}</p>';
+                var title = "${poi.nom}";
+                updateMapPoi(lat, lng, contentInfoPoi, title);
+            }
+
+        </script>
     </head>
     <body>
         <a href="#show-poi" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -20,6 +36,7 @@
             <div class="message" role="status">${flash.message}</div>
             </g:if>
             <f:display bean="poi" />
+            <div id="map"></div>
             <g:form resource="${this.poi}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="edit" action="edit" resource="${this.poi}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
