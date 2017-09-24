@@ -6,10 +6,24 @@
         <title><g:message code="default.show.label" args="[entityName]" /></title>
         <asset:javascript src="googlemapapi.js"></asset:javascript>
         <asset:stylesheet href="googlemapapi.css"></asset:stylesheet>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLm7WBXLggQd_tLaSQnd7fotkW6f-iBLo&callback=initMap">
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLm7WBXLggQd_tLaSQnd7fotkW6f-iBLo&callback=initMapGroupe">
         </script>
-
+        <script>
+            $.get("${createLink(controller:'groupe',action:'lieux')}", {id:${groupe.id}},function(data, status){
+                if(status=="success"){
+                    for(var i=0;i<data.length;i++){
+                        var poi = data[i];
+                        addLocalisation(poi.lieu.posX,poi.lieu.posY, poi.nom, poi.description);
+                    }
+                    map.setCenter({lat:centerLat/localisations.length, lng:centerLng/localisations.length});
+                    updateMapGroupe();
+                }else{
+                    console.log(status);
+                }
+            });
+        </script>
     </head>
     <body>
         <a href="#show-groupe" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -26,11 +40,6 @@
             <div class="message" role="status">${flash.message}</div>
             </g:if>
             <f:display bean="groupe" />
-            <g:each var="p" in="${groupe.pois }">
-                <script>
-                    addLocation(${p.lieu.posX}, ${p.lieu.posY});
-                </script>
-            </g:each>
             <div id="map"></div>
             <g:form resource="${this.groupe}" method="DELETE">
                 <fieldset class="buttons">

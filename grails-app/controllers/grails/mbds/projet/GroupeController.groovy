@@ -1,5 +1,6 @@
 package grails.mbds.projet
 
+import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 
 import static org.springframework.http.HttpStatus.*
@@ -14,6 +15,14 @@ class GroupeController {
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Groupe.list(params), model:[groupeCount: Groupe.count()]
+    }
+
+    @Secured(['ROLE_ADMIN','ROLE_MODERATEUR', 'ROLE_UTILISATEUR'])
+    def lieux(Groupe groupe){
+        def result = groupe.pois
+        JSON.use("deep"){
+            render result as JSON
+        }
     }
 
     @Secured(['ROLE_ADMIN','ROLE_MODERATEUR', 'ROLE_UTILISATEUR'])

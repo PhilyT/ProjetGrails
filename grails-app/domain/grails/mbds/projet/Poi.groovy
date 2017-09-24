@@ -13,4 +13,8 @@ class Poi {
         images nullable: true
         description blank: true, nullable: true
     }
+
+    static mapping = {
+        lieu lazy: false
+    }
 }
