@@ -11,18 +11,21 @@
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLm7WBXLggQd_tLaSQnd7fotkW6f-iBLo&callback=initMapGroupe">
         </script>
         <script>
-            $.get("${createLink(controller:'groupe',action:'lieux')}", {id:${groupe.id}},function(data, status){
-                if(status=="success"){
-                    for(var i=0;i<data.length;i++){
-                        var poi = data[i];
-                        addLocalisation(poi.lieu.posX,poi.lieu.posY, poi.nom, poi.description);
+            window.onload = function () {
+                $.get("${createLink(controller:'groupe',action:'lieux')}", {id:${groupe.id}},function(data, status){
+                    if(status=="success"){
+                        for(var i=0;i<data.length;i++){
+                            var poi = data[i];
+                            addLocalisation(poi.lieu.posX,poi.lieu.posY, poi.nom, poi.description);
+                        }
+                        map.setCenter({lat:centerLat/localisations.length, lng:centerLng/localisations.length});
+                        updateMapGroupe();
+                    }else{
+                        console.log(status);
                     }
-                    map.setCenter({lat:centerLat/localisations.length, lng:centerLng/localisations.length});
-                    updateMapGroupe();
-                }else{
-                    console.log(status);
-                }
-            });
+                });
+            }
+
         </script>
     </head>
     <body>
