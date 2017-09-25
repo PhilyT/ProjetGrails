@@ -11,18 +11,21 @@
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLm7WBXLggQd_tLaSQnd7fotkW6f-iBLo&callback=initMapGroupe">
         </script>
         <script>
-            $.get("${createLink(controller:'groupe',action:'lieux')}", {id:${groupe.id}},function(data, status){
-                if(status=="success"){
-                    for(var i=0;i<data.length;i++){
-                        var poi = data[i];
-                        addLocalisation(poi.lieu.posX,poi.lieu.posY, poi.nom, poi.description);
+            window.onload = function () {
+                $.get("${createLink(controller:'groupe',action:'lieux')}", {id:${groupe.id}},function(data, status){
+                    if(status=="success"){
+                        for(var i=0;i<data.length;i++){
+                            var poi = data[i];
+                            addLocalisation(poi.lieu.posX,poi.lieu.posY, poi.nom, poi.description);
+                        }
+                        map.setCenter({lat:centerLat/localisations.length, lng:centerLng/localisations.length});
+                        updateMapGroupe();
+                    }else{
+                        console.log(status);
                     }
-                    map.setCenter({lat:centerLat/localisations.length, lng:centerLng/localisations.length});
-                    updateMapGroupe();
-                }else{
-                    console.log(status);
-                }
-            });
+                });
+            }
+
         </script>
     </head>
     <body>
@@ -39,7 +42,26 @@
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:display bean="groupe" />
+            <ol class="property-list groupe">
+                <li class="fieldcontain">
+                    <span id="nom-label" class="property-label">Nom</span>
+                    <div class="property-value" aria-labelledby="nom-label">
+                        <f:display bean="groupe" property="nom" />
+                    </div>
+                </li>
+                <li class="fieldcontain">
+                    <span id="images-label" class="property-label">Images</span>
+                    <div class="property-value" aria-labelledby="images-label">
+                        <f:table collection="${groupe.images}" properties="['nom']"/>
+                    </div>
+                </li>
+                <li class="fieldcontain">
+                    <span id="pois-label" class="property-label">Pois</span>
+                    <div class="property-value" aria-labelledby="pois-label">
+                        <f:table collection="${groupe.pois}" properties="['nom', 'description']"/>
+                    </div>
+                </li>
+            </ol>
             <div id="map"></div>
             <g:form resource="${this.groupe}" method="DELETE">
                 <fieldset class="buttons">
