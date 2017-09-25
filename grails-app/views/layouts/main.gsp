@@ -34,6 +34,10 @@
                 <sec:ifLoggedIn>
                     <g:set var="iduser"><sec:loggedInUserInfo field='id'/></g:set>
                     <li>Bonjour <g:link controller="utilisateur" action="show" id="${iduser}"><sec:username/></g:link></li>
+                    <sec:ifAnyGranted roles='ROLE_ADMIN'>is admin</sec:ifAnyGranted>
+                    <sec:ifAnyGranted roles='ROLE_MODERATEUR'>is mod</sec:ifAnyGranted>
+                    <sec:ifAnyGranted roles='ROLE_UTILISATEUR'>is user</sec:ifAnyGranted>
+
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu<span class="caret"></span></a>
                         <ul class="dropdown-menu">

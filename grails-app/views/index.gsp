@@ -15,6 +15,8 @@
         <div class="grails-logo-container">
             <asset:image src="grails-cupsonly-logo-white.svg" class="grails-logo"/>
         </div>
+
+
     </div>
 
     <div id="content" role="main">
