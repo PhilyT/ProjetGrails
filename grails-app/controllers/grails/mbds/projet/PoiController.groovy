@@ -28,22 +28,16 @@ class PoiController {
             notFound()
             return
         }
-
         if (pois.hasErrors()) {
-            transactionStatus.setRollbackOnly()
-            respond pois.errors, view:'create'
+            render view: 'create', model: [poisInstance: pois]
             return
         }
 
         pois.save flush:true
+        flash.message = "POI was created"
+        redirect (action: "index")
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'poi.label', default: 'Poi'), pois.id])
-                redirect pois
-            }
-            '*' { respond pois, [status: CREATED] }
-        }
+
     }
 
     def edit(Poi pois) {
