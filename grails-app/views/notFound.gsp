@@ -2,7 +2,12 @@
 <html>
     <head>
         <title>Page Not Found</title>
-        <meta name="layout" content="main">
+        <sec:ifAnyGranted roles='ROLE_ADMIN'>
+            <meta name="layout" content="admin"/>
+        </sec:ifAnyGranted>
+        <sec:ifAnyGranted roles='ROLE_MODERATEUR,ROLE_UTILISATEUR'>
+            <meta name="layout" content="main"/>
+        </sec:ifAnyGranted>
         <g:if env="development"><asset:stylesheet src="errors.css"/></g:if>
     </head>
     <body>
