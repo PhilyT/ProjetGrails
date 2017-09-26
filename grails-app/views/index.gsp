@@ -1,7 +1,19 @@
 <!doctype html>
 <html>
 <head>
+<sec:ifNotLoggedIn>
     <meta name="layout" content="main"/>
+</sec:ifNotLoggedIn>
+<sec:ifLoggedIn>
+
+    <sec:ifAnyGranted roles='ROLE_ADMIN'>
+        <meta name="layout" content="admin"/>
+    </sec:ifAnyGranted>
+    <sec:ifAnyGranted roles='ROLE_MODERATEUR,ROLE_UTILISATEUR'>
+    <meta name="layout" content="main"/>
+    </sec:ifAnyGranted>
+</sec:ifLoggedIn>
+
     <title>Welcome</title>
 
     <asset:link rel="icon" href="favicon.ico" type="image/x-ico" />
@@ -18,6 +30,7 @@
 
 
     </div>
+
 
     <div id="content" role="main">
         <section class="row colset-2-its">

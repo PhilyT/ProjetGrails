@@ -1,4 +1,6 @@
+
 <!doctype html>
+
 <html lang="en" class="no-js">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -34,7 +36,7 @@
                 <sec:ifLoggedIn>
                     <g:set var="iduser"><sec:loggedInUserInfo field='id'/></g:set>
                     <li>Bonjour <g:link controller="utilisateur" action="show" id="${iduser}"><sec:username/></g:link></li>
-                    <sec:ifAnyGranted roles='ROLE_ADMIN'>is admin</sec:ifAnyGranted>
+
                     <sec:ifAnyGranted roles='ROLE_MODERATEUR'>is mod</sec:ifAnyGranted>
                     <sec:ifAnyGranted roles='ROLE_UTILISATEUR'>is user</sec:ifAnyGranted>
 
