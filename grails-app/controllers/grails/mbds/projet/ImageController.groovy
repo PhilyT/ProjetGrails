@@ -1,5 +1,7 @@
 package grails.mbds.projet
 
+import grails.plugin.springsecurity.annotation.Secured
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -8,20 +10,23 @@ class ImageController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    @Secured(['ROLE_ADMIN','ROLE_MODERATEUR', 'ROLE_UTILISATEUR'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Image.list(params), model:[imageCount: Image.count()]
     }
 
+    @Secured(['ROLE_ADMIN','ROLE_MODERATEUR', 'ROLE_UTILISATEUR'])
     def show(Image image) {
         respond image
     }
 
+    @Secured(['ROLE_ADMIN','ROLE_MODERATEUR'])
     def create() {
         respond new Image(params)
     }
 
-    @Transactional
+    @Transactional @Secured(['ROLE_ADMIN','ROLE_MODERATEUR'])
     def save(Image image) {
         if (image == null) {
             transactionStatus.setRollbackOnly()
@@ -46,11 +51,12 @@ class ImageController {
         }
     }
 
+    @Secured(['ROLE_ADMIN','ROLE_MODERATEUR'])
     def edit(Image image) {
         respond image
     }
 
-    @Transactional
+    @Transactional @Secured(['ROLE_ADMIN','ROLE_MODERATEUR'])
     def update(Image image) {
         if (image == null) {
             transactionStatus.setRollbackOnly()
@@ -75,7 +81,7 @@ class ImageController {
         }
     }
 
-    @Transactional
+    @Transactional @Secured(['ROLE_ADMIN','ROLE_MODERATEUR'])
     def delete(Image image) {
 
         if (image == null) {
