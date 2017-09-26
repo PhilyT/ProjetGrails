@@ -16,7 +16,7 @@
                     if(status=="success"){
                         for(var i=0;i<data.length;i++){
                             var poi = data[i];
-                            addLocalisation(poi.lieu.posX,poi.lieu.posY, poi.nom, poi.description);
+                            addLocalisation(poi.lieu.posX,poi.lieu.posY, poi.nom, poi.description, poi.images);
                         }
                         map.setCenter({lat:centerLat/localisations.length, lng:centerLng/localisations.length});
                         updateMapGroupe();
@@ -52,7 +52,9 @@
                 <li class="fieldcontain">
                     <span id="images-label" class="property-label">Images</span>
                     <div class="property-value" aria-labelledby="images-label">
-                        <f:table collection="${groupe.images}" properties="['nom']"/>
+                        <g:each var="image" in="${groupe.images}">
+                            <a href="${createLink(controller:'image',action:'show',id:image.id)}"><img src="http://localhost/projects/images/${image.nom}" alt="${image.nom}" width="60" height="80"/></a>
+                        </g:each>
                     </div>
                 </li>
                 <li class="fieldcontain">

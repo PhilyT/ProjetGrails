@@ -4,8 +4,8 @@ var map;
 var centerLat=0;
 var centerLng =0;
 
-function addLocalisation(lat,lng, nom, description) {
-    localisations.push({pos:{lat:parseFloat(lat), lng:parseFloat(lng)}, nom:nom, description:description});
+function addLocalisation(lat,lng, nom, description, images) {
+    localisations.push({pos:{lat:parseFloat(lat), lng:parseFloat(lng)}, nom:nom, description:description, images:images});
     centerLat+=parseFloat(lat);
     centerLng+=parseFloat(lng);
 }
@@ -58,7 +58,11 @@ function callbackmarker(i){
         title:localisations[i].nom
 
     });
-    var contentInfo = '<h1>'+ localisations[i].nom+'</h1><p>'+localisations[i].description+'</p>';
+    var contentInfo = '<h1>'+ localisations[i].nom+'</h1><p>'+localisations[i].description+'</p><p>';
+    for(var j=0; j<localisations[i].images.length; j++){
+        contentInfo += '<img src="http://localhost/projects/images/'+localisations[i].images[j].nom+'" alt="'+ localisations[i].images[j].nom +'" width="40" height="60"/>'
+    }
+    contentInfo += '</p>';
     var infowindow =new google.maps.InfoWindow({content:contentInfo});
     marker.addListener('mouseover', function(){
         clickListener(marker, infowindow);
