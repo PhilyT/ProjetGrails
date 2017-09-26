@@ -17,6 +17,7 @@ class UtilisateurController {
         println springSecurityService.getCurrentUser()
         params.max = Math.min(max ?: 10, 100)
         respond Utilisateur.list(params), model:[utilisateurCount: Utilisateur.count()]
+
     }
 
 

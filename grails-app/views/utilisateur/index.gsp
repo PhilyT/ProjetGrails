@@ -30,6 +30,12 @@
                 <sec:ifLoggedIn>
                     Logged in as <sec:username/>
                 </sec:ifLoggedIn>
+                <sec:ifAnyGranted roles='ROLE_ADMIN'>
+                   ...
+                    is admin
+                    ...
+
+                </sec:ifAnyGranted>
 
 
 
