@@ -32,13 +32,43 @@
             </ul>
             </g:hasErrors>
             <g:form resource="${this.utilisateur}" method="PUT">
+                <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MODERATEUR,ROLE_UTILISATEUR'>
                 <g:hiddenField name="version" value="${this.utilisateur?.version}" />
                 <fieldset class="form">
                     <f:all bean="utilisateur"/>
                 </fieldset>
+                </sec:ifAnyGranted>
+
+                <sec:ifAnyGranted roles='ROLE_ADMIN'>
+                    <div class="form-group">
+                        <label for="exampleSelect2">ROLE</label>
+                        <select multiple class="form-control" id="roleselect">
+                            <option>ROLE_ADMIN</option>
+                            <option>ROLE_MODERATEUR</option>
+                            <option>ROLE_UTILISATEUR</option>
+
+                        </select>
+                    </div>
+                </sec:ifAnyGranted>
+                <sec:ifAnyGranted roles='ROLE_MODERATEUR'>
+                    <div class="form-group">
+                        <label for="exampleSelect2">ROLE</label>
+                        <select multiple class="form-control" id="roleselect">
+
+                            <option>ROLE_MODERATEUR</option>
+                            <option>ROLE_UTILISATEUR</option>
+
+                        </select>
+                    </div>
+
+                </sec:ifAnyGranted>
+                <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_MODERATEUR,ROLE_UTILISATEUR'>
+
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
                 </fieldset>
+                </sec:ifAnyGranted>
+
             </g:form>
         </div>
     </body>

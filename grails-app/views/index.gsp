@@ -2,12 +2,9 @@
 <html>
 <head>
 <sec:ifNotLoggedIn>
-    <sec:ifAnyGranted roles='ROLE_ADMIN'>
-        <meta name="layout" content="admin"/>
-    </sec:ifAnyGranted>
-    <sec:ifAnyGranted roles='ROLE_MODERATEUR,ROLE_UTILISATEUR'>
+
         <meta name="layout" content="main"/>
-    </sec:ifAnyGranted>
+
 </sec:ifNotLoggedIn>
 <sec:ifLoggedIn>
 
