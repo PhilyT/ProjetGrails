@@ -1,5 +1,7 @@
 package grails.mbds.projet
 
+import grails.plugin.springsecurity.annotation.Secured
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -7,16 +9,16 @@ import grails.transaction.Transactional
 class PoiController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-
+    @Secured(['ROLE_ADMIN','ROLE_MODERATEUR','ROLE_UTILISATEUR'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Poi.list(params), model:[poisCount: Poi.count()]
     }
-
+    @Secured(['ROLE_ADMIN','ROLE_MODERATEUR','ROLE_UTILISATEUR'])
     def show(Poi pois) {
         respond pois
     }
-
+    @Secured(['ROLE_ADMIN','ROLE_MODERATEUR'])
     def create() {
         respond new Poi(params)
     }
@@ -39,12 +41,13 @@ class PoiController {
 
 
     }
-
+    @Secured(['ROLE_ADMIN','ROLE_MODERATEUR'])
     def edit(Poi pois) {
         respond pois
     }
 
     @Transactional
+    @Secured(['ROLE_ADMIN','ROLE_MODERATEUR'])
     def update(Poi pois) {
         if (pois == null) {
             transactionStatus.setRollbackOnly()
@@ -70,6 +73,7 @@ class PoiController {
     }
 
     @Transactional
+    @Secured(['ROLE_ADMIN','ROLE_MODERATEUR'])
     def delete(Poi pois) {
 
         if (pois == null) {

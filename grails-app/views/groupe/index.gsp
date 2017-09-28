@@ -24,7 +24,6 @@
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
             <f:table collection="${groupeList}" />
-
             <div class="pagination">
                 <g:paginate total="${groupeCount ?: 0}" />
             </div>
