@@ -54,21 +54,19 @@
                     <g:link controller="groupe" action="index">Groupes</g:link>
                 </div>
                 <div class="panel-body">
-                    <g:link controller="groupe" action="index">Pois</g:link>
+                    <g:link controller="poi" action="index">Pois</g:link>
                 </div>
                 <div class="panel-body">
-                    <g:link controller="groupe" action="index">Lieux</g:link>
+                    <g:link controller="lieu" action="index">Lieux</g:link>
                 </div>
                 <div class="panel-body">
-                    <g:link controller="groupe" action="index">Images</g:link>
+                    <g:link controller="image" action="index">Images</g:link>
                 </div>
             </div>
-
         </div>
         <div class="col-sm-8 text-left">
             <g:layoutBody/>
         </div>
-
     </div>
 </div>
 

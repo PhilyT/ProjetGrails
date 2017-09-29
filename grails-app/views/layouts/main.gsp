@@ -49,13 +49,13 @@
                                 <g:link controller="groupe" action="index">Groupes</g:link>
                             </li>
                             <li class="controller">
-                                <g:link controller="groupe" action="index">Pois</g:link>
+                                <g:link controller="poi" action="index">Pois</g:link>
                             </li>
                             <li class="controller">
-                                <g:link controller="groupe" action="index">Lieux</g:link>
+                                <g:link controller="lieu" action="index">Lieux</g:link>
                             </li>
                             <li class="controller">
-                                <g:link controller="groupe" action="index">Images</g:link>
+                                <g:link controller="image" action="index">Images</g:link>
                             </li>
                         </ul>
                     </li>
