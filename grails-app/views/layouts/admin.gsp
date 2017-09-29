@@ -5,12 +5,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title>ADMIN PAGE</title>
-    <meta charset="utf-8">
+    %{--<meta charset="utf-8">--}%
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <asset:stylesheet src="application.css"/>
     <asset:stylesheet src="admin.css"/>
     <g:layoutHead/>
@@ -26,7 +25,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Bonjour</a>
+            <div class="navbar-brand">Bonjour</div>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
@@ -47,7 +46,7 @@
 
             <div class="list-group">
                 <button type="button" class="list-group-item list-group-item-action active">
-                   ACTION
+                    ACTION
                 </button>
                 <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
 
@@ -73,6 +72,5 @@
     <g:message code="spinner.alt" default="Loading&hellip;"/>
 </div>
 
-<asset:javascript src="application.js"/>
 </body>
 </html>
