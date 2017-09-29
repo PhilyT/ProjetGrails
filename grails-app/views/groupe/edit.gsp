@@ -1,3 +1,4 @@
+<%@ page import="grails.mbds.projet.Poi" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,7 +35,28 @@
             <g:form resource="${this.groupe}" method="PUT">
                 <g:hiddenField name="version" value="${this.groupe?.version}" />
                 <fieldset class="form">
-                    <f:all bean="groupe"/>
+                    <div class='fieldcontain required'>
+                        <label for='nom'>Nom
+                            <span class='required-indicator'>*</span>
+                        </label>
+                        <g:field type="text" name="nom" value="${groupe.nom}" required="true"/>
+                    </div>
+                    <div class='fieldcontain'>
+                        <label>Images</label>
+                        <g:each var="image" in="${groupe.images}">
+                            <image src="http://localhost/projects/images/${image.nom}" alt="${image.nom}" width="60" height="80"/>
+                        </g:each>
+                        <a href="/image/create?groupe.id=${groupe.id}">Ajouter une image</a>
+                    </div>
+                    <div class='fieldcontain'>
+                        <label for='pois'>Pois</label>
+                        <g:select name="pois"
+                                  from="${Poi.all}"
+                                  value="${groupe.pois}"
+                                  optionKey="id"
+                                  optionValue="nom"
+                                  multiple="" />
+                    </div>
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />

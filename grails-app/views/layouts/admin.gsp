@@ -47,9 +47,9 @@
             <div class="panel panel-primary">
 
                 <div class="panel-heading">ACTION</div>
-                        <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-                <div class="panel-body"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></div>
-                    </g:each>
+                <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
+                    <div class="panel-body"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></div>
+                </g:each>
             </div>
 
         </div>

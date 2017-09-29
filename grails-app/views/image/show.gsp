@@ -24,7 +24,29 @@
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:display bean="image" />
+            <ol class="property-list groupe">
+                <li class="fieldcontain">
+                    <div class="property-value">
+                        <img src="http://localhost/projects/images/${image.nom}" alt="${image.nom}" width="240" height="400"/>
+                    </div>
+                </li>
+                <li class="fieldcontain">
+                    <span id="groupe-label" class="property-label">Groupe</span>
+                    <div class="property-value" aria-labelledby="groupe-label">
+                        <g:if test="${image.groupe}">
+                            <a href="${createLink(controller:'image',action:'show',id:image.groupe.id)}">${image.groupe.nom}</a>
+                        </g:if>
+                    </div>
+                </li>
+                <li class="fieldcontain">
+                    <span id="poi-label" class="property-label">Poi</span>
+                    <div class="property-value" aria-labelledby="poi-label">
+                        <g:if test="${image.poi}">
+                            <a href="${createLink(controller:'poi',action:'show',id:image.poi.id)}">${image.poi.nom}</a>
+                        </g:if>
+                    </div>
+                </li>
+            </ol>
             <g:form resource="${this.image}" method="DELETE">
                 <fieldset class="buttons">
                     <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MODERATEUR'><g:link class="edit" action="edit" resource="${this.image}"><g:message code="default.button.edit.label" default="Edit" /></g:link></sec:ifAnyGranted>

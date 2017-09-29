@@ -1,3 +1,4 @@
+<%@ page import="grails.mbds.projet.Poi" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,7 +33,21 @@
             </g:hasErrors>
             <g:form resource="${this.groupe}" method="POST">
                 <fieldset class="form">
-                    <f:all bean="groupe"/>
+                    <div class='fieldcontain required'>
+                        <label for='nom'>Nom
+                            <span class='required-indicator'>*</span>
+                        </label>
+                        <g:field type="text" name="nom" value="${groupe.nom}" required="true"/>
+                    </div>
+                    <div class='fieldcontain'>
+                        <label for='pois'>Pois</label>
+                        <g:select name="pois"
+                                  from="${Poi.all}"
+                                  value="${groupe.pois}"
+                                  optionKey="id"
+                                  optionValue="nom"
+                                  multiple="" />
+                    </div>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
