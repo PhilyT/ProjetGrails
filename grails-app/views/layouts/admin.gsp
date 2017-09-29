@@ -30,7 +30,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-
+                <g:set var="iduser"><sec:loggedInUserInfo field='id'/></g:set>
                 <li><g:link controller="utilisateur" action="show" id="${iduser}"><sec:username/></g:link></li>
 
             </ul>
