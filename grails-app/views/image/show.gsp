@@ -34,7 +34,7 @@
                     <span id="groupe-label" class="property-label">Groupe</span>
                     <div class="property-value" aria-labelledby="groupe-label">
                         <g:if test="${image.groupe}">
-                            <a href="${createLink(controller:'image',action:'show',id:image.groupe.id)}">${image.groupe.nom}</a>
+                            <a href="${createLink(controller:'groupe',action:'show',id:image.groupe.id)}">${image.groupe.nom}</a>
                         </g:if>
                     </div>
                 </li>

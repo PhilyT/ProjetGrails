@@ -37,16 +37,26 @@
                     <g:set var="iduser"><sec:loggedInUserInfo field='id'/></g:set>
                     <li><a>Bonjour</a></li>
                     <li><g:link controller="utilisateur" action="show" id="${iduser}"><sec:username/></g:link></li>
-
-
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
+                            <sec:ifAnyGranted roles='ROLE_MODERATEUR'>
                                 <li class="controller">
-                                    <g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>
+                                    <g:link controller="utilisateur" action="index">Utilisateurs</g:link>
                                 </li>
-                            </g:each>
+                            </sec:ifAnyGranted>
+                            <li class="controller">
+                                <g:link controller="groupe" action="index">Groupes</g:link>
+                            </li>
+                            <li class="controller">
+                                <g:link controller="groupe" action="index">Pois</g:link>
+                            </li>
+                            <li class="controller">
+                                <g:link controller="groupe" action="index">Lieux</g:link>
+                            </li>
+                            <li class="controller">
+                                <g:link controller="groupe" action="index">Images</g:link>
+                            </li>
                         </ul>
                     </li>
                     <li><g:link controller="logout">Deconnexion</g:link></li>
