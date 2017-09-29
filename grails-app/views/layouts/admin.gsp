@@ -44,19 +44,13 @@
     <div class="row content">
         <div class="col-sm-4 sidenav" id="sid">
 
-            <div class="list-group">
-                <button type="button" class="list-group-item list-group-item-action active">
-                    ACTION
-                </button>
-                <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
+            <div class="panel panel-primary">
 
-                    <button type="button" class="list-group-item list-group-item-action">
-                        <g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>
-                    </button>
-
-                </g:each>
+                <div class="panel-heading">ACTION</div>
+                        <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
+                <div class="panel-body"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></div>
+                    </g:each>
             </div>
-
 
         </div>
         <div class="col-sm-8 text-left">
