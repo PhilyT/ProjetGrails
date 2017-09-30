@@ -63,8 +63,9 @@
                     <g:link controller="image" action="index">Images</g:link>
                 </div>
             </div>
+
         </div>
-        <div class="col-sm-10 text-left">
+        <div class="col-sm-10 text-left" id="bodyadmin">
             <g:layoutBody/>
         </div>
     </div>
