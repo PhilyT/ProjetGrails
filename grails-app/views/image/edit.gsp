@@ -1,3 +1,5 @@
+<%@ page import="grails.mbds.projet.Poi" %>
+<%@ page import="grails.mbds.projet.Groupe" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,7 +36,45 @@
             <g:form resource="${this.image}" method="PUT">
                 <g:hiddenField name="version" value="${this.image?.version}" />
                 <fieldset class="form">
-                    <f:all bean="image"/>
+                    <div class='fieldcontain'>
+                        <image src="http://localhost/projects/images/${image.nom}" alt="${image.nom}" width="240" height="400"/>
+                    </div>
+                    <div class='fieldcontain'>
+                        <label for='poi'>Poi</label>
+                        <g:if test="${!image.poi}">
+                        <g:select name="poi"
+                                  from="${Poi.all}"
+                                  value="${image.poi}"
+                                  optionKey="id"
+                                  optionValue="nom"
+                                  noSelection="['':'']"/>
+                        </g:if>
+                        <g:if test="${image.poi}">
+                            <g:select name="poi"
+                                      from="${Poi.all}"
+                                      value="${image.poi}"
+                                      optionKey="id"
+                                      optionValue="nom"/>
+                        </g:if>
+                    </div>
+                    <div class='fieldcontain'>
+                        <label for='groupe'>Groupe</label>
+                        <g:if test="${!image.groupe}">
+                        <g:select name="groupe"
+                                  from="${Groupe.all}"
+                                  value="${image.groupe}"
+                                  optionKey="id"
+                                  optionValue="nom"
+                                  noSelection="['':'']"/>
+                        </g:if>
+                        <g:if test="${image.groupe}">
+                            <g:select name="groupe"
+                                      from="${Groupe.all}"
+                                      value="${image.groupe}"
+                                      optionKey="id"
+                                      optionValue="nom"/>
+                        </g:if>
+                    </div>
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />

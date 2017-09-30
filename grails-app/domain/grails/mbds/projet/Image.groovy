@@ -5,7 +5,7 @@ class Image {
     String nom
 
     static constraints = {
-        nom blank: false , nullable: false,unique: true
+        nom blank: false , nullable: true,unique: true
         groupe nullable: true
         poi nullable: true
     }
