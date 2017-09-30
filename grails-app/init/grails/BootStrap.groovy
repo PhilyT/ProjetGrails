@@ -19,11 +19,11 @@ class BootStrap {
 
             def utilisateur = new Utilisateur(username:"user", password:"0000", name: "Toto", lastName: "Dupont").save(flush:true, failOnError:true)
             def moderateur = new Utilisateur(username:"mod", password:"0000", name: "Titi", lastName: "Piou").save(flush:true, failOnError:true)
-            def admin = new Utilisateur(username:"admin", password:"0000", name: "Tata", lastName: "Piou").save(flush:true, failOnError:true)
+            def administrateur = new Utilisateur(username:"admin", password:"0000", name: "Tata", lastName: "Piou").save(flush:true, failOnError:true)
 
             UtilisateurRole.create( utilisateur, roleUtilisateur,true)
             UtilisateurRole.create (moderateur, roleModerateur, true)
-            UtilisateurRole.create (admin, roleAdmin,true)
+            UtilisateurRole.create (administrateur, roleAdmin,true)
 
             def groupe1 = new Groupe(nom:"Les points d'interets d'Aichatou").save(flush:true, failOnError:true)
             def groupe2 = new Groupe(nom:"Les points d'interets de Tom").save(flush:true, failOnError:true)
@@ -55,6 +55,33 @@ class BootStrap {
             def poi5 = new Poi(nom:"Burger King", description: "Restaurant Grill", lieu:lieu5, utilisateur: moderateur)
             poi5.addToImages(new Image(nom:"photo15.jpg"))
             poi5.addToImages(new Image(nom:"photo16.jpg"))
+            def lieu6=new Lieu(nom:"Jean Medecin", ville:"Nice", codePostal: "06000", posX: 43.702069 , posY: 7.267177)
+            def poi6=new Poi(nom:"KFC", description: "Restaurant poulet", lieu:lieu6, utilisateur: administrateur)
+            def lieu7=new Lieu(nom:"Jean Medecin", ville:"Nice", codePostal: "06000", posX: 43.702069 , posY: 7.267177)
+            def poi7=new Poi(nom:"cine", description: "cine PATHE", lieu:lieu7, utilisateur: administrateur)
+            def lieu8=new Lieu(nom:"Jean Medecin", ville:"Nice", codePostal: "06000", posX: 43.702069 , posY: 7.267177)
+            def poi8=new Poi(nom:"HM", description: "magasin de vetements", lieu:lieu8, utilisateur: administrateur)
+            def lieu9=new Lieu(nom:"Jean Medecin", ville:"Nice", codePostal: "06000", posX: 43.702069 , posY: 7.267177)
+            def poi9=new Poi(nom:"fast food", description: "cine KEBAB", lieu:lieu9, utilisateur: administrateur)
+            def lieu10=new Lieu(nom:"Jean Medecin", ville:"Nice", codePostal: "06000", posX: 43.702069 , posY: 7.267177)
+            def poi10=new Poi(nom:"parc", description: "jardin", lieu:lieu10, utilisateur: administrateur)
+            def lieu11=new Lieu(nom:"Jean Medecin", ville:"Nice", codePostal: "06000", posX: 43.702069 , posY: 7.267177)
+            def poi11=new Poi(nom:"ciné2", description: "cine PATHE", lieu:lieu11, utilisateur: administrateur)
+            def lieu12=new Lieu(nom:"Jean Medecin", ville:"Nice", codePostal: "06000", posX: 43.702069 , posY: 7.267177)
+            def poi12=new Poi(nom:"gallerie la fayette", description: "magasin de vetements", lieu:lieu12, utilisateur: administrateur)
+            def lieu13=new Lieu(nom:"Jean Medecin", ville:"Nice", codePostal: "06000", posX: 43.702069 , posY: 7.267177)
+            def poi13=new Poi(nom:"fnac", description: "magasin d'accessoir", lieu:lieu13, utilisateur: administrateur)
+            def lieu14=new Lieu(nom:"Jean Medecin", ville:"Nice", codePostal: "06000", posX: 43.702069 , posY: 7.267177)
+            def poi14=new Poi(nom:"KW", description: "magasin de vetement et chaussures", lieu:lieu14, utilisateur: administrateur)
+            def lieu15=new Lieu(nom:"Jean Medecin", ville:"Nice", codePostal: "06000", posX: 43.702069 , posY: 7.267177)
+            def poi15=new Poi(nom:"MCDONALD", description: "fast food", lieu:lieu15, utilisateur: administrateur)
+
+
+
+
+
+
+
 
 
             groupe2.addToPois(poi1)
@@ -63,6 +90,21 @@ class BootStrap {
             groupe2.addToPois(poi4)
             groupe2.addToPois(poi5)
             groupe2.save(flush:true, failOnError:true)
+
+
+            groupe1.addToPois(poi6)
+            groupe1.addToPois(poi7)
+            groupe1.addToPois(poi8)
+            groupe1.addToPois(poi9)
+            groupe1.addToPois(poi10)
+            groupe1.save(flush:true, failOnError:true)
+
+            groupe3.addToPois(poi11)
+            groupe3.addToPois(poi12)
+            groupe3.addToPois(poi13)
+            groupe3.addToPois(poi14)
+            groupe3.addToPois(poi15)
+            groupe3.save(flush:true, failOnError:true)
 
         }
     }

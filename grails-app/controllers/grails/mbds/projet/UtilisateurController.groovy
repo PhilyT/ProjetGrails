@@ -1,6 +1,7 @@
 package grails.mbds.projet
 
 import grails.plugin.springsecurity.annotation.Secured
+import grails.util.GrailsUtil
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -17,6 +18,8 @@ class UtilisateurController {
         println springSecurityService.getCurrentUser()
         params.max = Math.min(max ?: 10, 100)
         respond Utilisateur.list(params), model:[utilisateurCount: Utilisateur.count()]
+
+
 
     }
 

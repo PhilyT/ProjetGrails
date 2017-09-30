@@ -15,7 +15,7 @@
     <g:layoutHead/>
 
 </head>
-<body>
+<body id="adminbody">
 
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -40,9 +40,9 @@
     </div>
 </nav>
 
-<div class="container-fluid text-center">
+<div class="container text-center">
     <div class="row content">
-        <div class="col-sm-4 sidenav" id="sid">
+        <div class="col-sm-2 sidenav" id="sid">
 
             <div class="panel panel-primary">
 
@@ -63,14 +63,15 @@
                     <g:link controller="image" action="index">Images</g:link>
                 </div>
             </div>
+
         </div>
-        <div class="col-sm-8 text-left">
+        <div class="col-sm-10 text-left" id="bodyadmin">
             <g:layoutBody/>
         </div>
     </div>
 </div>
 
-<div class="footer" role="contentinfo"></div>
+<div  id="footadmin"></div>
 
 <div id="spinner" class="spinner" style="display:none;">
     <g:message code="spinner.alt" default="Loading&hellip;"/>
