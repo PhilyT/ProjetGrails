@@ -51,7 +51,7 @@ class ImageController {
 
         String baseImageName = java.util.UUID.randomUUID().toString()
         def downloadedFile = request.getFile( "productPic" )
-        String fileUploaded = imagePersistenceService.uploadFile( downloadedFile, "${baseImageName}.jpg", "localhost/projects/images/" )
+        String fileUploaded = imagePersistenceService.uploadFile( downloadedFile, "${baseImageName}.jpg", "C:/Program Files (x86)/EasyPHP-DevServer-14.1VC11/data/localweb/projects/images/" )
         if( fileUploaded ){
             image.nom = "${baseImageName}.jpg"
             image.save flush:true

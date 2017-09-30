@@ -9,13 +9,11 @@ class ImagePersistenceService {
 
     String uploadFile( MultipartFile file, String name, String destinationDirectory ) {
 
-        def serveletContext = ServletContextHolder.servletContext
-        def storagePath = serveletContext.getRealPath( destinationDirectory )
 
-        def storagePathDirectory = new File( storagePath )
+        def storagePathDirectory = new File( destinationDirectory )
 
         if( !storagePathDirectory.exists() ){
-            println("creating directory ${storagePath}")
+            println("creating directory ${destinationDirectory}")
             if(storagePathDirectory.mkdirs()){
                 println "SUCCESS"
             }else{
@@ -26,9 +24,9 @@ class ImagePersistenceService {
         // Store file
 
         if(!file.isEmpty()){
-            file.transferTo( new File("${storagePath}/${name}") )
-            println("Saved File: ${storagePath}/${name}")
-            return "${storagePath}/${name}"
+            file.transferTo( new File("${destinationDirectory}/${name}") )
+            println("Saved File: ${destinationDirectory}/${name}")
+            return "${destinationDirectory}/${name}"
         }else{
             println "File: ${file.inspect()} was empty"
             return null
