@@ -14,14 +14,17 @@
     padding-top: 20px;
     background-color: #f1f1f1;
     height: 100%;
+
+}
+#footadmin{
+    background-color: #997A8D;
+    color: white;
+    padding: 15px;
+
 }
 
 /* Set black background color, white text and some padding */
-footer {
-    background-color: #555;
-    color: white;
-    padding: 15px;
-}
+
 a{
     color:#337ab7;
 }
@@ -29,8 +32,14 @@ a{
 
 
   }
-body{
-    margin-left: auto;
+#adminbody{
+
+   
+
+}
+.container{
+
+
 
 }
 /* On small screens, set height to 'auto' for sidenav and grid */

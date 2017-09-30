@@ -15,7 +15,7 @@
     <g:layoutHead/>
 
 </head>
-<body>
+<body id="adminbody">
 
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -70,7 +70,7 @@
     </div>
 </div>
 
-<div class="footer" role="contentinfo"></div>
+<div  id="footadmin"></div>
 
 <div id="spinner" class="spinner" style="display:none;">
     <g:message code="spinner.alt" default="Loading&hellip;"/>
