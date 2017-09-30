@@ -28,7 +28,7 @@
                 <thead>
                 <tr>
                     <g:sortableColumn property="nom" title="Nom" />
-                   
+
                     <th>Images</th>
                     <th>Description</th>
                     <th>Utilisateur</th>
@@ -46,10 +46,10 @@
                         </td>
                         <td> <a href="${createLink(controller:'poi',action:'show',id:poi.id)}">${fieldValue(bean: poi, field: "description")}</a> </td>
                         <td> <a href="${createLink(controller:'utilisateur',action:'show',id:poi.utilisateur.id)}">${poi.utilisateur.username}</a></td>
-                        <td> <li><a href="${createLink(controller:'lieu',action:'show',id:poi.lieu.id)}">${poi.lieu.nom}</a></li></td>
+                        <td> <p><a href="${createLink(controller:'lieu',action:'show',id:poi.lieu.id)}">${poi.lieu.nom}</a></p></td>
 
                         <td><u><g:each var="groupe" in="${poi.groupes}">
-                            <li><a href="${createLink(controller:'groupe',action:'show',id:groupe.id)}">${groupe.nom}</a></li>
+                            <p><a href="${createLink(controller:'groupe',action:'show',id:groupe.id)}">${groupe.nom}</a></p>
                         </g:each>
                         </u></td>
                     </tr>
@@ -60,7 +60,7 @@
 
 
             <div class="pagination">
-                <g:paginate total="${poiCount ?: 0}" />
+                <g:paginate total="${poisCount ?: 0}" />
             </div>
         </div>
     </body>

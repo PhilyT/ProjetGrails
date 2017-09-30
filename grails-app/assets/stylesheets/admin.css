@@ -22,11 +22,15 @@ footer {
     color: white;
     padding: 15px;
 }
+a{
+    color:#337ab7;
+}
 #sid{
 
 
   }
 body{
+    margin-left: auto;
 
 }
 /* On small screens, set height to 'auto' for sidenav and grid */

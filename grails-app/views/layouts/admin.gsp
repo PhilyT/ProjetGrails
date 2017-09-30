@@ -40,9 +40,9 @@
     </div>
 </nav>
 
-<div class="container-fluid text-center">
+<div class="container text-center">
     <div class="row content">
-        <div class="col-sm-4 sidenav" id="sid">
+        <div class="col-sm-2 sidenav" id="sid">
 
             <div class="panel panel-primary">
 
@@ -64,7 +64,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-8 text-left">
+        <div class="col-sm-10 text-left">
             <g:layoutBody/>
         </div>
     </div>
