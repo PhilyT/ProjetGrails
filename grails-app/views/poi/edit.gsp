@@ -1,3 +1,7 @@
+<%@ page import= "grails.mbds.projet.Groupe" %>
+<%@ page import="grails.mbds.projet.Utilisateur" %>
+<%@ page import="grails.mbds.projet.Lieu" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -33,8 +37,55 @@
             </g:hasErrors>
             <g:form resource="${this.poi}" method="PUT">
                 <g:hiddenField name="version" value="${this.poi?.version}" />
+
+
                 <fieldset class="form">
-                    <f:all bean="poi"/>
+                    <div class='fieldcontain required'>
+                        <label for='nom'>Nom
+                            <span class='required-indicator'>*</span>
+                        </label>
+                        <g:field type="text" name="nom" value="${poi.nom}" required="true"/>
+                    </div>
+                    <div class='fieldcontain'>
+                        <label>Images</label>
+                        <g:each var="image" in="${poi.images}">
+                            <image src="http://localhost/projects/images/${poi.nom}" alt="${poi.nom}" width="60" height="80"/>
+                        </g:each>
+                        <a href="/image/create?poi.id=${poi.id}">Ajouter une image</a>
+                    </div>
+                    <div class='fieldcontain required'>
+                        <label for='description'>Description
+                            <span class='required-indicator'>*</span>
+                        </label>
+                        <g:field type="text" name="description" value="${poi.description}" required="true"/>
+                    </div>
+                    <div class='fieldcontain'>
+                        <label for='utilisateur'>Utilisateur</label>
+                        <g:select name="utilisateur"
+                                  from="${Utilisateur.all}"
+                                  value="${poi.utilisateur}"
+                                  optionKey="id"
+                                  optionValue="username"
+                                   />
+                    </div>
+                    <div class='fieldcontain'>
+                        <label for='lieu'>Lieu</label>
+                        <g:select name="lieu"
+                                  from="${Lieu.all}"
+                                  value="${poi.lieu}"
+                                  optionKey="id"
+                                  optionValue="nom"
+                                  />
+                    </div>
+                    <div class='fieldcontain'>
+                        <label for='groupes'>Groupes</label>
+                        <g:select name="groupes"
+                                  from="${Groupe.all}"
+                                  value="${poi.groupes}"
+                                  optionKey="id"
+                                  optionValue="nom"
+                                   multiple=""/>
+                    </div>
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
