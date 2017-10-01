@@ -25,8 +25,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <div class="navbar-brand">
-                Back To Admin</div>
+            <div class="navbar-brand">Back To Admin</div>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
@@ -77,6 +76,6 @@
 <div id="spinner" class="spinner" style="display:none;">
     <g:message code="spinner.alt" default="Loading&hellip;"/>
 </div>
-
+<asset:javascript src="application.js"/>
 </body>
 </html>
