@@ -9,6 +9,20 @@
     </sec:ifAnyGranted>
     <g:set var="entityName" value="${message(code: 'lieu.label', default: 'Lieu')}" />
     <title><g:message code="default.show.label" args="[entityName]" /></title>
+    <asset:javascript src="googlemapapi.js"></asset:javascript>
+    <asset:stylesheet href="googlemapapi.css"></asset:stylesheet>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLm7WBXLggQd_tLaSQnd7fotkW6f-iBLo&callback=initMapPoi">
+    </script>
+    <script>
+        window.onload = function () {
+            var lat = parseFloat(${lieu.posX});
+            var lng = parseFloat(${lieu.posY});
+            var contentInfoPoi = '<p>${lieu.nom}</p><p>${lieu.ville}</p><p>${lieu.codePostal}</p>';
+            var title = "${lieu.nom}";
+            updateMapPoi(lat, lng, contentInfoPoi, title);
+        }
+    </script>
 </head>
 <body>
 <a href="#show-lieu" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -25,6 +39,7 @@
         <div class="message" role="status">${flash.message}</div>
     </g:if>
     <f:display bean="lieu" />
+    <div id="map"></div>
     <g:form resource="${this.lieu}" method="DELETE">
         <fieldset class="buttons">
             <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MODERATEUR'><g:link class="edit" action="edit" resource="${this.lieu}"><g:message code="default.button.edit.label" default="Edit" /></g:link></sec:ifAnyGranted>

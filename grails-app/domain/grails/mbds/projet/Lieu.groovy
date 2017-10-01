@@ -1,13 +1,12 @@
 package grails.mbds.projet
 
 class Lieu {
-    //static belongsTo = [poi:Poi]
     String nom
 
     String  codePostal
     String ville
-    Double posX
-    Double posY
+    String posX
+    String posY
     static constraints = {
         nom blank: false , nullable: false
         ville blank: false, nullable : false
