@@ -75,7 +75,7 @@ class BootStrap {
             def poi14=new Poi(nom:"KW", description: "magasin de vetement et chaussures", lieu:lieu14, utilisateur: administrateur)
             def lieu15=new Lieu(nom:"Jean Medecin", ville:"Nice", codePostal: "06000", posX: "43.7001692" , posY: "7.268467200000032")
             def poi15=new Poi(nom:"MCDONALD", description: "fast food", lieu:lieu15, utilisateur: administrateur)
-            
+
 
             groupe2.addToPois(poi1)
             groupe2.addToPois(poi2)

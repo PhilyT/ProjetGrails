@@ -1,5 +1,12 @@
 # ProjetGrails
 
+> Infos :  
+> user mot de passe 0000  
+> mod mot de passe 0000  
+> admin mot de passe 0000  
+> chemin d'accès aux images : dans le dossier "projects/images" de easyPhp
+ 
+
 ## 1/ Contributeurs
 
 [Tom Phily](https://github.com/PhilyT)  
@@ -7,7 +14,7 @@
 
 ## 2/ Responsable
 
-[Greg Galli]()
+[Greg Galli](#)
 
 ## 3/ Le sujet
 
@@ -77,6 +84,11 @@ Les formulaires de modification et de création impliquant des images devront pe
 >Bonus (+2 point sur la partie projet) : Mettez en place au niveau de la gestion des Groupes et Pois une Map, cette dernière vous permettra :
 > - Au niveau d’un POI de le visualiser sur la carte et de le déplacer directement depuis la carte, ce qui modifiera les coordonnées de ce dernier
 > - Au niveau d’un Groupe, de visualiser l’intégralité des POI qu’il «contient» sur la carte
+
+> Utilisation de la google map api pou générer la map.  
+> Script googlemapapi.js utilisé pour l'affichage des map dans les différents vues.  
+> Ajout de méthodes lieu et lieux dans les contôleur groupe et poi pour l'obtention des données nécessaire à l'affichage sous format json.  
+> Modification des coordonnées d'un lieu possible en cliquant sur la carte dans l'edition des lieux.
 
 ### Bonus
 
