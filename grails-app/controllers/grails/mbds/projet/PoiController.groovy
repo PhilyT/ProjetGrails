@@ -8,6 +8,8 @@ import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class PoiController {
+    def springSecurityService
+
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     @Secured(['ROLE_ADMIN','ROLE_MODERATEUR','ROLE_UTILISATEUR'])
@@ -21,6 +23,7 @@ class PoiController {
     }
     @Secured(['ROLE_ADMIN','ROLE_MODERATEUR'])
     def create() {
+
         respond new Poi(params)
     }
     @Secured(['ROLE_ADMIN','ROLE_MODERATEUR', 'ROLE_UTILISATEUR'])
@@ -40,7 +43,7 @@ class PoiController {
             render view: 'create', model: [poisInstance: pois]
             return
         }
-
+        pois.utilisateur=springSecurityService.getCurrentUser()
         pois.save flush:true
         flash.message = "POI was created"
         redirect (action: "index")
