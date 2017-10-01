@@ -3,6 +3,8 @@ var localisation;
 var map;
 var centerLat=0;
 var centerLng =0;
+var markerLieu;
+var infowindowLieu;
 
 function addLocalisation(lat,lng, nom, description, images) {
     localisations.push({pos:{lat:parseFloat(lat), lng:parseFloat(lng)}, nom:nom, description:description, images:images});
@@ -30,18 +32,18 @@ function initMapPoi() {
 
 function updateMapPoi(lat, lng, contentInfoPoi, title){
     localisation = {lat:lat,lng:lng};
-    var marker = new google.maps.Marker({
+    markerLieu = new google.maps.Marker({
         position: localisation,
         map: map,
         title:title
     });
     map.setCenter(localisation);
-    var infowindow =new google.maps.InfoWindow({content:contentInfoPoi});
-    marker.addListener('mouseover', function(){
-        clickListener(marker, infowindow);
+    infowindowLieu =new google.maps.InfoWindow({content:contentInfoPoi});
+    markerLieu.addListener('mouseover', function(){
+        clickListener(markerLieu, infowindowLieu);
     });
-    marker.addListener('mouseout', function() {
-        infowindow.close();
+    markerLieu.addListener('mouseout', function() {
+        infowindowLieu.close();
     });
 }
 
@@ -74,4 +76,25 @@ function callbackmarker(i){
 
 function clickListener(marker, infowindow){
     infowindow.open(map, marker);
+}
+
+function placeMarkerAndPanTo(latLng, map) {
+    if(markerLieu){
+        markerLieu.setMap(null);
+    }
+    document.getElementById("posX").value = latLng.lat();
+    document.getElementById("posY").value = latLng.lng();
+    markerLieu = new google.maps.Marker({
+        position: latLng,
+        map: map
+    });
+    if(infowindowLieu){
+        markerLieu.addListener('mouseover', function(){
+            clickListener(markerLieu, infowindowLieu);
+        });
+        markerLieu.addListener('mouseout', function() {
+            infowindowLieu.close();
+        });
+    }
+    map.panTo(latLng);
 }
