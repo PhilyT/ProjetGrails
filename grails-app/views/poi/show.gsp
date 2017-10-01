@@ -17,13 +17,23 @@
         </script>
         <script>
             window.onload = function () {
-                var lat = parseFloat(${poi.lieu.posX});
-                var lng = parseFloat(${poi.lieu.posY});
-                var contentInfoPoi = '<h1>${poi.nom}</h1><p>${poi.description}</p>';
-                var title = "${poi.nom}";
-                updateMapPoi(lat, lng, contentInfoPoi, title);
+                $.get("${createLink(controller:'poi',action:'lieu')}", {id:${poi.id}},function(data, status){
+                    if(status=="success"){
+                        var lat = parseFloat(data.lieu.posX);
+                        var lng = parseFloat(data.lieu.posY);
+                        var images = data.images;
+                        var contentInfoPoi = '<h1>'+data.nom+'</h1><p>'+data.description+'</p><p>';
+                        for(var j=0; j<images.length; j++){
+                            contentInfoPoi += '<img src="http://localhost/projects/images/'+images[j].nom+'" alt="'+images[j].nom +'" width="40" height="60"/>'
+                        }
+                        contentInfoPoi += '</p>';
+                        var title = data.nom;
+                        updateMapPoi(lat, lng, contentInfoPoi, title);
+                    }else{
+                        console.log(status);
+                    }
+                });
             }
-
         </script>
     </head>
     <body>

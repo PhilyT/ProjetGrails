@@ -1,5 +1,6 @@
 package grails.mbds.projet
 
+import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 
 import static org.springframework.http.HttpStatus.*
@@ -22,7 +23,12 @@ class PoiController {
     def create() {
         respond new Poi(params)
     }
-
+    @Secured(['ROLE_ADMIN','ROLE_MODERATEUR', 'ROLE_UTILISATEUR'])
+    def lieu(Poi poi){
+        JSON.use("deep"){
+            render poi as JSON
+        }
+    }
     @Transactional
     def save(Poi pois) {
         if (pois == null) {
