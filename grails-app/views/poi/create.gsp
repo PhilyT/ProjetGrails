@@ -50,13 +50,23 @@
                     </div>
 
                     <div class='fieldcontain'>
+                        <label for='utilisateur'>Utilisateur</label>
+                        <g:select name="utilisateur"
+                                  from="${Utilisateur.all}"
+                                  value="${poi.utilisateur}"
+                                  optionKey="id"
+                                  optionValue="username"
+                                  />
+                    </div>
+
+                    <div class='fieldcontain'>
                         <label for='lieu'>lieu</label>
                         <g:select name="lieu"
                                   from="${Lieu.all}"
                                   value="${poi.lieu}"
                                   optionKey="id"
                                   optionValue="nom"
-                                  multiple="" />
+                                    />
                     </div>
 
                     <div class='fieldcontain'>
