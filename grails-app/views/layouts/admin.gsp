@@ -15,7 +15,7 @@
     <g:layoutHead/>
 
 </head>
-<body id="adminbody">
+<body >
 
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -25,7 +25,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <div class="navbar-brand">Bonjour</div>
+            <div class="navbar-brand">
+                Back To Admin</div>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
@@ -40,8 +41,8 @@
     </div>
 </nav>
 
-<div class="container text-center">
-    <div class="row content">
+<div class="container text-center" >
+    <div class="row content"  >
         <div class="col-sm-2 sidenav" id="sid">
 
             <div class="panel panel-primary">

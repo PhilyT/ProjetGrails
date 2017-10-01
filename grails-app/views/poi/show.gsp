@@ -50,7 +50,58 @@
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:display bean="poi" />
+
+
+            <ol class="property-list poi">
+                <li class="fieldcontain">
+                    <span id="nom-label" class="property-label">Nom</span>
+                    <div class="property-value" aria-labelledby="nom-label">
+                        <f:display bean="poi" property="nom" />
+                    </div>
+                </li>
+                <li class="fieldcontain">
+                    <span id="images-label" class="property-label">Images</span>
+                    <div class="property-value" aria-labelledby="images-label">
+                        <g:each var="image" in="${poi.images}">
+                            <a href="${createLink(controller:'image',action:'show',id:image.id)}"><img src="http://localhost/projects/images/${image.nom}" alt="${image.nom}" width="60" height="80"/></a>
+                        </g:each>
+                    </div>
+                </li>
+                <li class="fieldcontain">
+                    <span id="description-label" class="property-label">Description</span>
+                    <div class="property-value" aria-labelledby="description-label">
+                        <f:display bean="poi" property="description" />
+                    </div>
+                </li>
+
+                <li class="fieldcontain">
+                    <span id="utilisateur-label" class="property-label">Utilisateur</span>
+                    <div class="property-value" aria-labelledby="utilisateur-label">
+                        <f:display bean="poi" property="utilisateur.username" />
+                    </div>
+                </li>
+                <li class="fieldcontain">
+                    <span id="lieu-label" class="property-label">Lieu</span>
+                    <div class="property-value" aria-labelledby="lieu-label">
+                        <f:display bean="poi" property="lieu.nom" />
+                    </div>
+                </li>
+                <li class="fieldcontain">
+                    <span id="groupe-label" class="property-label">Groupe</span>
+                    <div class="property-value" aria-labelledby="groupes-label">
+                        <f:table collection="${poi.groupes}" properties="['nom']"/>
+                    </div>
+                </li>
+            </ol>
+
+
+
+
+
+
+
+
+
             <div id="map"></div>
             <g:form resource="${this.poi}" method="DELETE">
                 <fieldset class="buttons">
