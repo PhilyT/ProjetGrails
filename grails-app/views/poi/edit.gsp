@@ -77,15 +77,7 @@
                                   optionValue="nom"
                                   />
                     </div>
-                    <div class='fieldcontain'>
-                        <label for='groupes'>Groupes</label>
-                        <g:select name="groupes"
-                                  from="${Groupe.all}"
-                                  value="${poi.groupes}"
-                                  optionKey="id"
-                                  optionValue="nom"
-                                   multiple=""/>
-                    </div>
+                    
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
