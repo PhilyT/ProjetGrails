@@ -89,6 +89,7 @@ class PoiController {
             return
         }
 
+        pois.groupes.each {it.removeFromPois(pois)}
         pois.delete flush:true
 
         request.withFormat {
