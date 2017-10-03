@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <asset:stylesheet src="application.css"/>
     <asset:stylesheet src="admin.css"/>
+
     <g:layoutHead/>
 
 </head>
@@ -68,7 +70,7 @@
                     <div class="nav" role="navigation">
                         <ul>
 
-                            <li><g:link class="list" action="index">ListeGroupes</g:link></li>
+                            <li><g:link class="list" action="index" controller="groupe">ListeGroupes</g:link></li>
                             <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MODERATEUR'><li><g:link class="create"  controller="groupe"  action="create">Add NewGroupe</g:link></li></sec:ifAnyGranted>
                         </ul>
                     </div>

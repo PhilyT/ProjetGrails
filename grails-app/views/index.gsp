@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <sec:ifNotLoggedIn>
 
         <meta name="layout" content="main"/>
@@ -31,10 +32,12 @@
         </div>
 
 
+
     </div>
 
 
     <div id="content" role="main">
+        <div id="piechart" style="width: 900px; height: 500px;"></div>
         <section class="row colset-2-its">
             <h1>Welcome to Grails</h1>
 
@@ -47,6 +50,6 @@
 
         </section>
     </div>
-
+<asset:javascript src="camenber.js"/>
 </body>
 </html>
