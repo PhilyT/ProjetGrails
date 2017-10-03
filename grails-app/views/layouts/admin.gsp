@@ -25,6 +25,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+
             <div class="navbar-brand">Back To Admin</div>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
@@ -44,23 +45,64 @@
     <div class="row content"  >
         <div class="col-sm-2 sidenav" id="sid">
 
-            <div class="panel panel-primary">
+            <div >
+                <div class="nav" role="navigation">
+                    <ul>
+                        <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+                    </ul>
+                </div>
 
-                <div class="panel-heading">ACTION</div>
-                <div class="panel-body">
-                    <g:link controller="utilisateur" action="index">Utilisateurs</g:link>
+
+                <div >
+                    <h1>Utilisateurs</h1>
+                    <div class="nav" role="navigation">
+                        <ul>
+
+                            <li><g:link class="list" action="index" controller="utilisateur">ListeUsers</g:link></li>
+                            <li><g:link class="create"  controller="utilisateur" action="create">Add New User</g:link></li>
+                        </ul>
                 </div>
-                <div class="panel-body">
-                    <g:link controller="groupe" action="index">Groupes</g:link>
                 </div>
-                <div class="panel-body">
-                    <g:link controller="poi" action="index">Pois</g:link>
+                <div >
+                    <h1>Groupes</h1>
+                    <div class="nav" role="navigation">
+                        <ul>
+
+                            <li><g:link class="list" action="index">ListeGroupes</g:link></li>
+                            <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MODERATEUR'><li><g:link class="create"  controller="groupe"  action="create">Add NewGroupe</g:link></li></sec:ifAnyGranted>
+                        </ul>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <g:link controller="lieu" action="index">Lieux</g:link>
+                <div >
+                    <h1>Pois</h1>
+                    <div class="nav" role="navigation">
+                        <ul>
+
+                            <li><g:link class="list"  controller="poi" action="index">ListePois</g:link></li>
+                            <li><g:link class="create" controller="poi" action="create">Add New Poi</g:link></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <g:link controller="image" action="index">Images</g:link>
+                <div >
+                    <h1>Lieux</h1>
+                    <div class="nav" role="navigation">
+                        <ul>
+
+                            <li><g:link class="list"   controller= "lieu" action="index">ListeLieux</g:link></li>
+                            <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MODERATEUR'><li><g:link class="create"  controller= "lieu" action="create">Add NewLieu</g:link></li></sec:ifAnyGranted>
+                        </ul>
+                    </div>
+
+                </div>
+                <div >
+                    <h1>Images</h1>
+                    <div class="nav" role="navigation">
+                        <ul>
+
+                            <li><g:link class="list" action="index" controller="image">ListeImages</g:link></li>
+                            <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MODERATEUR'><li><g:link class="create"  controller= "image" action="create"> Add New Image</g:link></li></sec:ifAnyGranted>
+                        </ul>
+                    </div>
                 </div>
             </div>
 

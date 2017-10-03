@@ -17,5 +17,8 @@ class Poi {
     static mapping = {
         lieu lazy: false
         lieu cascade: 'all-delete-orphan'
+       groupes  dynamicUpdate :true
+
+
     }
 }

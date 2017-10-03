@@ -2,7 +2,7 @@
 .navbar {
     margin-bottom: 0;
     border-radius: 0;
-    background-color:#997A8D ;
+    background-color:#66512c;
     color: #ffffff;
     position: fixed;
     width: 100%;
@@ -21,11 +21,11 @@
     height: 100%;
     border-radius: 0;
     border: none;
-    background-color: #997A8D;
+    background-color:  #66512c;
     overflow-y: auto;
 }
 #footadmin{
-    background-color: #997A8D;
+    background-color: #66512c;;
     color: white;
     padding: 15px;
     position: fixed;
@@ -43,7 +43,7 @@ a:hover
 {
     color :  #000000;
 }
-#sid{
+#sid.nav{
 
 
   }
@@ -88,9 +88,15 @@ table#t01 th {
 }
 tr:hover
 {
-    background-color :  #997A8D;
+    background-color : #d0e9c6;
 }
 th:hover
 {
-    background-color :  #997A8D;
+    background-color :  #d0e9c6;
+}
+li{
+    color: #f8f8f8;
+}
+h1{
+    color: #f8f8f8;
 }
