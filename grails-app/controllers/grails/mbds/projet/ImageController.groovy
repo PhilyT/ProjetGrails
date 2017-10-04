@@ -48,10 +48,9 @@ class ImageController {
             respond image.errors, view:'create'
             return
         }
-
         String baseImageName = java.util.UUID.randomUUID().toString()
         def downloadedFile = request.getFile( "productPic" )
-        String fileUploaded = imagePersistenceService.uploadFile( downloadedFile, "${baseImageName}.jpg", "C:/Program Files (x86)/EasyPHP-DevServer-14.1VC11/data/localweb/projects/images/" )
+        String fileUploaded = imagePersistenceService.uploadFile( downloadedFile, "${baseImageName}.jpg", grailsApplication.config.chemin.images.path )
         if( fileUploaded ){
             image.nom = "${baseImageName}.jpg"
             image.save flush:true

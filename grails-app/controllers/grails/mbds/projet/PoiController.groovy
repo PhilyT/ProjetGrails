@@ -42,6 +42,8 @@ class PoiController {
             render view: 'create', model: [poisInstance: pois]
             return
         }
+        pois.groupes.each {it.addToPois(pois).save(flush:true)}
+
         pois.save flush:true
         flash.message = "POI was created"
         redirect (action: "index")

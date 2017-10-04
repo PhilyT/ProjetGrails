@@ -2,7 +2,6 @@ package grails.mbds.projet
 
 class Lieu {
     String nom
-
     String  codePostal
     String ville
     String posX
