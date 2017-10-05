@@ -1,5 +1,4 @@
 <%@ page import= "grails.mbds.projet.Groupe" %>
-<%@ page import="grails.mbds.projet.Utilisateur" %>
 <%@ page import="grails.mbds.projet.Lieu" %>
 
 <!DOCTYPE html>
@@ -51,12 +50,8 @@
 
                     <div class='fieldcontain'>
                         <label for='utilisateur'>Utilisateur</label>
-                        <g:select name="utilisateur"
-                                  from="${Utilisateur.all}"
-                                  value="${poi.utilisateur}"
-                                  optionKey="id"
-                                  optionValue="username"
-                                  />
+                        <g:set var="iduser"><sec:loggedInUserInfo field='id'/></g:set>
+                        <g:field type="text" name="utilisateur" value="${iduser}" readonly="true"/>
                     </div>
 
                     <div class='fieldcontain'>

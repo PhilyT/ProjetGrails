@@ -1,5 +1,4 @@
 <%@ page import= "grails.mbds.projet.Groupe" %>
-<%@ page import="grails.mbds.projet.Utilisateur" %>
 <%@ page import="grails.mbds.projet.Lieu" %>
 
 <!DOCTYPE html>
@@ -49,7 +48,7 @@
                     <div class='fieldcontain'>
                         <label>Images</label>
                         <g:each var="image" in="${poi.images}">
-                            <image src="http://localhost/projects/images/${poi.nom}" alt="${poi.nom}" width="60" height="80"/>
+                            <image src="http://localhost/projects/images/${image.nom}" alt="${image.nom}" width="60" height="80"/>
                         </g:each>
                         <a href="/image/create?poi.id=${poi.id}">Ajouter une image</a>
                     </div>
@@ -61,12 +60,8 @@
                     </div>
                     <div class='fieldcontain'>
                         <label for='utilisateur'>Utilisateur</label>
-                        <g:select name="utilisateur"
-                                  from="${Utilisateur.all}"
-                                  value="${poi.utilisateur}"
-                                  optionKey="id"
-                                  optionValue="username"
-                                   />
+                        <g:set var="iduser"><sec:loggedInUserInfo field='id'/></g:set>
+                        <g:field type="text" name="utilisateur" value="${iduser}" readonly="true"/>
                     </div>
                     <div class='fieldcontain'>
                         <label for='lieu'>Lieu</label>
@@ -77,7 +72,7 @@
                                   optionValue="nom"
                                   />
                     </div>
-                    
+
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />

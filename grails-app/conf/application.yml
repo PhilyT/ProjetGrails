@@ -28,7 +28,10 @@ endpoints:
     enabled: false
     jmx:
         enabled: true
-
+chemin:
+    images:
+        url : 'http://localhost:80/projects/images/'
+        path : 'C:/Program Files (x86)/EasyPHP-DevServer-14.1VC11/data/localweb/projects/images/'
 
 ---
 grails:
@@ -84,6 +87,7 @@ grails:
                 scriptlets: html
                 taglib: none
                 staticparts: none
+
 endpoints:
     jmx:
         unique-names: true
