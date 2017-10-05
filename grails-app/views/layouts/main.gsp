@@ -37,26 +37,91 @@
                     <g:set var="iduser"><sec:loggedInUserInfo field='id'/></g:set>
                     <li><a>Bonjour</a></li>
                     <li><g:link controller="utilisateur" action="show" id="${iduser}"><sec:username/></g:link></li>
+                    <sec:ifAnyGranted roles='ROLE_MODERATEUR'>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Utilisateurs<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <sec:ifAnyGranted roles='ROLE_MODERATEUR'>
+
                                 <li class="controller">
-                                    <g:link controller="utilisateur" action="index">Utilisateurs</g:link>
+
+                                    <div class="nav" role="navigation">
+                                        <ul>
+
+                                            <li><g:link class="list" action="index" controller="utilisateur">ListeUsers</g:link></li>
+                                            <li><g:link class="create"  controller="utilisateur" action="create">Add New User</g:link></li>
+                                        </ul>
+                                    </div>
                                 </li>
-                            </sec:ifAnyGranted>
+                        </ul>
+                    </li>
+                    </sec:ifAnyGranted>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Groupes<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+
+                                <li class="controller">
+
+                                    <div class="nav" role="navigation">
+                                        <ul>
+
+                                             <li><g:link class="list" action="index" controller="groupe">ListeGroupes</g:link></li>
+                                                <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MODERATEUR'><li><g:link class="create"  controller="groupe"  action="create">Add NewGroupe</g:link></li></sec:ifAnyGranted>
+                                        </ul>
+                                    </div>
+                                </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">POIS<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+
                             <li class="controller">
-                                <g:link controller="groupe" action="index">Groupes</g:link>
+
+                                <div class="nav" role="navigation">
+                                    <ul>
+
+                                        <li><g:link class="list"  controller="poi" action="index">ListePois</g:link></li>
+                                        <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MODERATEUR'> <li><g:link class="create" controller="poi" action="create">Add New Poi</g:link></li></sec:ifAnyGranted>
+                                    </ul>
+                                </div>
                             </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">LIEUX<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+
                             <li class="controller">
-                                <g:link controller="poi" action="index">Pois</g:link>
+
+                                <div class="nav" role="navigation">
+                                    <ul>
+                                        <li><g:link class="list"   controller= "lieu" action="index">ListeLieux</g:link></li>
+                                        <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MODERATEUR'><li><g:link class="create"  controller= "lieu" action="create">Add NewLieu</g:link></li></sec:ifAnyGranted>
+                                    </ul>
+                                </div>
                             </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Images<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+
                             <li class="controller">
-                                <g:link controller="lieu" action="index">Lieux</g:link>
+
+                                <div class="nav" role="navigation">
+                                    <ul>
+                                        <li><g:link class="list" action="index" controller="image">ListeImages</g:link></li>
+                                        <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MODERATEUR'><li><g:link class="create"  controller= "image" action="create"> Add New Image</g:link></li></sec:ifAnyGranted>
+                                    </ul>
+                                </div>
                             </li>
-                            <li class="controller">
-                                <g:link controller="image" action="index">Images</g:link>
-                            </li>
+
                         </ul>
                     </li>
                     <li><g:link controller="logout">Deconnexion</g:link></li>
