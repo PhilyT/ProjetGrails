@@ -2,7 +2,7 @@
 .navbar {
     margin-bottom: 0;
     border-radius: 0;
-    background-color:#66512c;
+    background-color:#003333;
     color: #ffffff;
     position: fixed;
     width: 100%;
@@ -21,11 +21,11 @@
     height: 100%;
     border-radius: 0;
     border: none;
-    background-color:  #66512c;
+    background-color:  #003333;
     overflow-y: auto;
 }
 #footadmin{
-    background-color: #66512c;;
+    background-color:  #003333;
     color: white;
     padding: 15px;
     position: fixed;
@@ -95,8 +95,12 @@ th:hover
     background-color :  #d0e9c6;
 }
 li{
+
+}
+.sidenav h1 {
     color: #f8f8f8;
 }
-h1{
+.sidenav.nav.ul.li.a  {
     color: #f8f8f8;
+
 }

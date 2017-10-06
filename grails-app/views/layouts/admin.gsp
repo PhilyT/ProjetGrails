@@ -45,7 +45,7 @@
 
 <div class="container text-center" >
     <div class="row content"  >
-        <div class="col-sm-2 sidenav" id="sid">
+        <div class="col-sm-2 sidenav " id="sid">
 
             <div >
                 <div class="nav" role="navigation">
