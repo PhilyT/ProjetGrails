@@ -37,7 +37,11 @@
 
 
     <div id="content" role="main">
+        <sec:ifLoggedIn>
+            <sec:ifAnyGranted roles='ROLE_ADMIN'>
         <div id="piechart" style="width: 900px; height: 500px;"></div>
+            </sec:ifAnyGranted>
+        </sec:ifLoggedIn>
         <section class="row colset-2-its">
             <h1>Welcome to Grails</h1>
 

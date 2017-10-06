@@ -48,7 +48,7 @@
                                         <ul>
 
                                             <li><g:link class="list" action="index" controller="utilisateur">ListeUsers</g:link></li>
-                                            <li><g:link class="create"  controller="utilisateur" action="create">Add New User</g:link></li>
+                                            <sec:ifAnyGranted roles='ROLE_ADMIN'> <li><g:link class="create"  controller="utilisateur" action="create"> NewUser</g:link></li></sec:ifAnyGranted>
                                         </ul>
                                     </div>
                                 </li>
@@ -65,7 +65,7 @@
                                         <ul>
 
                                              <li><g:link class="list" action="index" controller="groupe">ListeGroupes</g:link></li>
-                                                <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MODERATEUR'><li><g:link class="create"  controller="groupe"  action="create">Add NewGroupe</g:link></li></sec:ifAnyGranted>
+                                                <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MODERATEUR'><li><g:link class="create"  controller="groupe"  action="create">NewGroupe</g:link></li></sec:ifAnyGranted>
                                         </ul>
                                     </div>
                                 </li>
@@ -83,7 +83,7 @@
                                     <ul>
 
                                         <li><g:link class="list"  controller="poi" action="index">ListePois</g:link></li>
-                                        <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MODERATEUR'> <li><g:link class="create" controller="poi" action="create">Add New Poi</g:link></li></sec:ifAnyGranted>
+                                        <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MODERATEUR'> <li><g:link class="create" controller="poi" action="create"> NewPoi</g:link></li></sec:ifAnyGranted>
                                     </ul>
                                 </div>
                             </li>
@@ -100,7 +100,7 @@
                                 <div class="nav" role="navigation">
                                     <ul>
                                         <li><g:link class="list"   controller= "lieu" action="index">ListeLieux</g:link></li>
-                                        <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MODERATEUR'><li><g:link class="create"  controller= "lieu" action="create">Add NewLieu</g:link></li></sec:ifAnyGranted>
+                                        <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MODERATEUR'><li><g:link class="create"  controller= "lieu" action="create">NewLieu</g:link></li></sec:ifAnyGranted>
                                     </ul>
                                 </div>
                             </li>
@@ -117,7 +117,7 @@
                                 <div class="nav" role="navigation">
                                     <ul>
                                         <li><g:link class="list" action="index" controller="image">ListeImages</g:link></li>
-                                        <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MODERATEUR'><li><g:link class="create"  controller= "image" action="create"> Add New Image</g:link></li></sec:ifAnyGranted>
+                                        <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_MODERATEUR'><li><g:link class="create"  controller= "image" action="create"> NewImage</g:link></li></sec:ifAnyGranted>
                                     </ul>
                                 </div>
                             </li>
