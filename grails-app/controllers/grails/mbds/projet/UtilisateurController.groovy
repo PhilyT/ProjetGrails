@@ -1,5 +1,6 @@
 package grails.mbds.projet
 
+import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.util.GrailsUtil
 
@@ -129,6 +130,15 @@ class UtilisateurController {
 
     }
 
+    def statistique(){
+        def nbUsers=Utilisateur.getCount()
+        def nbpoi= Poi.getCount()
+        def nbLieu= Lieu.getCount()
+        def nbImage=Image.getCount()
+        def nbGroupe= Groupe.getCount()
+        def tab = [nbUsers, nbGroupe, nbLieu, nbImage, nbpoi]
+        render tab as JSON
+    }
     protected void notFound() {
         request.withFormat {
             form multipartForm {

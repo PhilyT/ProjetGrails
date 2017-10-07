@@ -1,16 +1,17 @@
 
 google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
 
-function drawChart(arrayRoles) {
+
+function drawChart(data) {
+console.log(data);
 
     var data = google.visualization.arrayToDataTable([
         ['Task', 'Hours per Day'],
-        ['Work',     11],
-        ['Eat',      2],
-        ['Commute',  2],
-        ['Watch TV', 2],
-        ['Sleep',    7]
+        ['UTILISATEUR', parseInt(data[0])],
+        ['POIS',      parseInt(data[4])],
+        ['GROUPES',  parseInt(data[1])],
+        ['Lieux', parseInt(data[2])],
+        ['Images',    parseInt(data[3])]
     ]);
 
     var options = {

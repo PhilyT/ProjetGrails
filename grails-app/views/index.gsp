@@ -18,8 +18,21 @@
 </sec:ifLoggedIn>
 
     <title>Welcome</title>
-
+    <asset:javascript src="camenber.js"/>
     <asset:link rel="icon" href="favicon.ico" type="image/x-ico" />
+    <script>
+        window.onload = function () {
+            $.get("${createLink(controller:'utilisateur',action:'statistique')}",function(data, status){
+                if(status=="success"){
+                    google.charts.setOnLoadCallback(drawChart(data));
+
+                }else{
+                    console.log(status);
+                }
+            });
+        }
+
+    </script>
 </head>
 <body>
 
@@ -54,6 +67,6 @@
 
         </section>
     </div>
-<asset:javascript src="camenber.js"/>
+
 </body>
 </html>
