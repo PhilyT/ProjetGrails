@@ -15,7 +15,7 @@ console.log(data);
     ]);
 
     var options = {
-        title: 'My Daily Activities'
+        title: 'Dashboard'
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('piechart'));

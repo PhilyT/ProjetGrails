@@ -11,12 +11,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <asset:stylesheet src="application.css"/>
+    <sec:ifAnyGranted roles='ROLE_MODERATEUR'> <asset:stylesheet src="stylemodUser.css"/></sec:ifAnyGranted>
 
     <g:layoutHead/>
 </head>
 <body>
 
-<div class="navbar navbar-default navbar-static-top" role="navigation">
+<div class="navbar navbar-default navbar-static-top" role="navigation" >
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -25,11 +26,20 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            <sec:ifLoggedIn>
             <a class="navbar-brand" href="/#">
                 <i class="fa grails-icon">
                     <asset:image src="grails-cupsonly-logo-white.svg"/>
                 </i> Grails
             </a>
+            </sec:ifLoggedIn>
+            <sec:ifNotLoggedIn>
+            <a  href="http://www.mbds-fr.org/">
+                <i >
+                    <asset:image src="logombds.jpg"/>
+                </i>
+            </a>
+            </sec:ifNotLoggedIn>
         </div>
         <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
             <ul class="nav navbar-nav navbar-right">

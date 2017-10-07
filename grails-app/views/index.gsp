@@ -38,7 +38,7 @@
 
 
 </content>
-
+<sec:ifAnyGranted roles='ROLE_UTILISATEUR'>
 <div class="svg" role="presentation">
     <div class="grails-logo-container">
         <asset:image src="grails-cupsonly-logo-white.svg" class="grails-logo"/>
@@ -48,13 +48,30 @@
 
 </div>
 
+</sec:ifAnyGranted>
+<sec:ifLoggedIn>
+<sec:ifAnyGranted roles='ROLE_MODERATEUR'>
 
+    <div >
+        <div class="imgPoi">
+
+            <asset:image src="parc.jpg" />
+
+        </div>
+
+
+
+    </div>
+</sec:ifAnyGranted>
+</sec:ifLoggedIn>
 <div id="content" role="main">
     <sec:ifLoggedIn>
         <sec:ifAnyGranted roles='ROLE_ADMIN'>
             <div id="piechart" style="width: 900px; height: 500px;"></div>
         </sec:ifAnyGranted>
     </sec:ifLoggedIn>
+    <sec:ifNotLoggedIn>
+
     <section class="row colset-2-its">
         <h1>Projet Serveur Grails MBDS</h1>
 
@@ -67,7 +84,7 @@
             <li>Chemin d'accès aux images : "C:/Program Files (x86)/EasyPHP-DevServer-14.1VC11/data/localweb/projects/images/"</li>
             <li>Dossier images à la racine du projet contient les images du groupe et des pois insérer par le bootstrap.</li>
         </ul>
-        <h3> Utilisation de la google map api pou générer la map.</h3>
+        <h3> Utilisation de la google map api pour générer la map.</h3>
         <ul>
             <li>Script googlemapapi.js utilisé pour l'affichage des map dans les différents vues.</li>
             <li>Ajout de méthodes lieu et lieux dans les contôleur groupe et poi pour l'obtention des données nécessaire à l'affichage sous format json.</li>
@@ -75,14 +92,25 @@
         </ul>
     </p>
 
-<<<<<<< HEAD
+
         </section>
+        <h1> Réalisateurs</h1>
+        <table >
+
+          <tr>
+           <th>Tom Phily </th> <td><asset:image src="tom.jpg" /></td>
+        <th>Traoré Aichatou</th> <td><asset:image src="Traore.jpg" /></td>
+        </tr>
+
+
+    </table>
+    </sec:ifNotLoggedIn>
     </div>
 
-=======
+
     </section>
 </div>
-<asset:javascript src="camenber.js"/>
->>>>>>> d69188c8c125b590e035716b193d82a5463ca45c
+
+
 </body>
 </html>
